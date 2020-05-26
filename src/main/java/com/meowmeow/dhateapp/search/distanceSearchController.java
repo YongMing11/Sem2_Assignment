@@ -1,10 +1,9 @@
 package com.meowmeow.dhateapp.search;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("search")
@@ -16,13 +15,20 @@ public class distanceSearchController {
             new searchResult("Chu Helix","Male",200,2,"temp","temp"),
             new searchResult("Chui Hi Ling","Prefer not to disclose",400,10,"temp","temp")
     );
-    @GetMapping("/distance")
-    public List<searchResult> placeholder(){
+    @GetMapping(path = "/distance/{id}")
+    public List<searchResult> placeholder(
+            @PathVariable("id")UUID userId,
+            @RequestParam(name = "dist", defaultValue = "100")int distance
+    ){
+        System.out.println(userId + " " + distance);
         return fake;
     }
 
-    @GetMapping("/interest")
-    public  List<searchResult> temporary(){
+    @GetMapping(path = "/interest/{id}")
+    public  List<searchResult> temporary(
+            @PathVariable("id")UUID userId
+    ){
+        System.out.println(userId);
         return fake;
     }
 }
