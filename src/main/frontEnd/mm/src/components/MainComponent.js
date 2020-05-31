@@ -23,12 +23,12 @@ class Main extends Component {
       );
     }
     return (
-      <div className="container">
-        <div className="row align-item-start">
+      <div className="container w-100 d-flex flex-column justify-content-between h-100 brown">
+        <div className="row">
           <Header />
         </div>
 
-        <div className="row align-item-center">
+        <div className="row">
           <Switch>
             <Route path="/find" component={FindPage} />
             <Route path="/chat" component={ChatPage} />
@@ -37,8 +37,10 @@ class Main extends Component {
           </Switch>
         </div>
 
-        <div className="row align-item-end">
-          <BottomNav />
+        <div className="row">
+          {/* <div className="col-12 m-0 p-0"> */}
+            <BottomNav />
+          {/* </div> */}
         </div>
       </div>
     );

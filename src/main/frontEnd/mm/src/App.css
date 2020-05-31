@@ -1,18 +1,3 @@
-/* .header{
-  background-color: #fffdb0;
-  text-align: center;
-}
-
-.row-header{
-  margin:0px auto;
-  padding:0px auto;
-}
-
-body{
-  margin: 0;
-  padding: 0;
-} */
-
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -23,17 +8,36 @@ body{
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
-.navbar{
-  list-style-type: none;
+.brown{
+  background-color: rgb(58, 46, 17);
 }
 
-/* .navbar-dark{
-  background-color: rgb(19, 21, 151);
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-.bottomNav{
-  position: absolute;
-  bottom: 0em;
-  
-} */
+header{
+  padding: 3px;
+  margin: 0em;
+  background-color: rgb(240, 175, 91);
+}
 
+.nav-link{
+  padding: auto ;
+  margin: auto;
+  text-align: center;
+  color: black;
+}
+
+.orange{
+  background-color: rgb(240, 175, 91);
+  /* margin: 0 30px; */
+}
+
+.black{
+ color: black;
+}

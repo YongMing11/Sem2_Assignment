@@ -10,9 +10,10 @@ class Header extends Component {
       // <div className="text-center bg-primary text-white">
       <div className="container">
         <div className="row">
-          <div className="header">
-            <h3 className="noselect">MeowMeow</h3>
-          </div>
+          <header className="col-12">
+          {/* rmb to add a link here */}
+            <h3 className="noselect text-center">MeowMeow</h3>
+          </header>
         </div>
       </div>
     );
