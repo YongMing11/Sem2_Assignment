@@ -1,0 +1,2 @@
+#this exclude the node_modules folder in this directory and child directories
+node_modules/

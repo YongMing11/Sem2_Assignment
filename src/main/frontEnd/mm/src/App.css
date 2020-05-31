@@ -1,0 +1,39 @@
+/* .header{
+  background-color: #fffdb0;
+  text-align: center;
+}
+
+.row-header{
+  margin:0px auto;
+  padding:0px auto;
+}
+
+body{
+  margin: 0;
+  padding: 0;
+} */
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.navbar{
+  list-style-type: none;
+}
+
+/* .navbar-dark{
+  background-color: rgb(19, 21, 151);
+}
+
+.bottomNav{
+  position: absolute;
+  bottom: 0em;
+  
+} */
+
