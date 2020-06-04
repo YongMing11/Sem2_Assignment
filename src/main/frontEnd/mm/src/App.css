@@ -37,7 +37,25 @@ header{
   background-color: rgb(240, 175, 91);
   /* margin: 0 30px; */
 }
+.lightorange{
+  background-color: rgb(245, 198, 136);
+  /* margin: 0 30px; */
+}
 
 .black{
  color: black;
+}
+
+.unreadMsgNum{
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  font-size: 10px;
+  background: rgb(253, 255, 151);
+  line-height: 25px;
+  text-align: center;
+}
+
+.roundImage{
+  border-radius: 50%;
 }

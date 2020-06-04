@@ -2,17 +2,12 @@ import React, { Component } from 'react';
 import Header from './HeaderComponent';
 import BottomNav from './BottomNavComponent';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import ChatPage from './ChatPageComponent';
 
 class Main extends Component {
 
-
   render() {
     const FindPage = () => {
-      return (
-        <div></div>
-      );
-    }
-    const ChatPage = () => {
       return (
         <div></div>
       );
@@ -28,6 +23,7 @@ class Main extends Component {
           <Header />
         </div>
 
+      <div className="container w-100 d-flex flex-column flex-start h-100">
         <div className="row">
           <Switch>
             <Route path="/find" component={FindPage} />
@@ -36,6 +32,7 @@ class Main extends Component {
             <Redirect to="/find" />
           </Switch>
         </div>
+      </div>
 
         <div className="row">
           {/* <div className="col-12 m-0 p-0"> */}
