@@ -8,9 +8,7 @@ class ChatRoom extends Component {
     return (
       <div className="container-fluid d-flex flex-column h-100">
         <ChatRoomHeader />
-        <div className="row h-100 bg-primary">
-          <div className=" bg-dark">ChatRoomBody</div>
-        </div>
+        <ChatRoomBody />
         <ChatBar />
       </div>
     );

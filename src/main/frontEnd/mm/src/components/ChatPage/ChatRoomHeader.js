@@ -6,7 +6,7 @@ class ChatRoomHeader extends Component {
 
   render() {
     return (
-      <div className="row orange">
+      <div className="row light-orange">
         <Media className="col-9">
           <Media left>
             <Media object src={image} alt="Generic placeholder image" className="m-2 round-image" />
