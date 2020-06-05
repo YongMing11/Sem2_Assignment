@@ -3,6 +3,7 @@ import Header from './HeaderComponent';
 import BottomNav from './BottomNavComponent';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import ChatPage from './ChatPageComponent';
+import ChatRoom from './ChatPage/ChatRoomComponent';
 
 class Main extends Component {
 
@@ -24,12 +25,12 @@ class Main extends Component {
         </div>
 
       <div className="container w-100 d-flex flex-column flex-start h-100">
-        <div className="row">
+        <div className="row h-100">
           <Switch>
-            <Route path="/find" component={FindPage} />
+            <Route path="/find" component={ChatRoom} />
             <Route path="/chat" component={ChatPage} />
             <Route path="/profile" component={ProfilePage} />
-            <Redirect to="/find" />
+            <Redirect to="/chatroom" />
           </Switch>
         </div>
       </div>

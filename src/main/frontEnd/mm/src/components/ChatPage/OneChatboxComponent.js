@@ -13,7 +13,7 @@ class OneChat extends Component {
 
     return (
       <div className="container-fluid">
-        <div className="row lightorange">
+        <div className="row light-orange">
           <div className="col-9">
             <LeftSide name={"He Lin"} lastMsgText={shownText} img="profilePic.png" />
           </div>

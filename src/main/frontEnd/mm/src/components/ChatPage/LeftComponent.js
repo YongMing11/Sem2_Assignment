@@ -9,7 +9,7 @@ function LeftSide(props) {
         <Media left>
           {/* <Media object src={"../../../images/GenericProfilePic.png"} alt="Generic placeholder image" /> */}
           {/* <Media object src={"../../logo.svg"} alt="Generic placeholder image" /> */}
-          <Media object src={image} alt="Generic placeholder image" className="m-2 roundImage" />
+          <Media object src={image} alt="Generic placeholder image" className="m-2 round-image" />
         </Media>
         <Media body className="ml-1 mt-1">
           <Media heading className="m-0 p-0 mt-2">

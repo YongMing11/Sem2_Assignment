@@ -37,7 +37,7 @@ header{
   background-color: rgb(240, 175, 91);
   /* margin: 0 30px; */
 }
-.lightorange{
+.light-orange{
   background-color: rgb(245, 198, 136);
   /* margin: 0 30px; */
 }
@@ -46,7 +46,7 @@ header{
  color: black;
 }
 
-.unreadMsgNum{
+.unread-msg-num{
   width: 25px;
   height: 25px;
   border-radius: 50%;
@@ -56,6 +56,20 @@ header{
   text-align: center;
 }
 
-.roundImage{
+.round-image{
   border-radius: 50%;
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.info-button{
+  height: 35px;
+  width: 35px;
 }
