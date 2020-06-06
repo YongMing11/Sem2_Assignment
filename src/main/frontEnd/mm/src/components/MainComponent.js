@@ -2,18 +2,14 @@ import React, { Component } from 'react';
 import Header from './HeaderComponent';
 import BottomNav from './BottomNavComponent';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import ChatPage from './ChatPageComponent';
-import ChatRoom from './ChatPage/ChatRoomComponent';
+import ChatPage from './Chat/MaineChatPage';
+import ProfilePage from './ProfilePage/HeaderComponent';
+import ChatRoom from './Chat/MainChatRoom';
 
 class Main extends Component {
 
   render() {
     const FindPage = () => {
-      return (
-        <div></div>
-      );
-    }
-    const ProfilePage = () => {
       return (
         <div></div>
       );
@@ -32,7 +28,7 @@ class Main extends Component {
                 <Route path="/find" component={ChatRoom} />
                 <Route path="/chat" component={ChatPage} />
                 <Route path="/profile" component={ProfilePage} />
-                <Redirect to="/chatroom" />
+                <Redirect to="/find" />
               </Switch>
             </div>
           </div>

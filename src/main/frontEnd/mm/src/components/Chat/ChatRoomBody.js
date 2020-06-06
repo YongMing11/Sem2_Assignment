@@ -7,8 +7,8 @@ class ChatRoomBody extends Component {
       <div className="row h-100 bg-primary ">
         <div className="container-fluid">
         {/* why the below w-100 shrink the width of row indeed? */}
-          {/* <div className="row w-100 bg-success "> */}
-          <div className="row my-1">
+          {/* <div className="row w-100 bg-success"> */}
+          <div className="row my-1 bg-success">
             <div className="col-9">
               <Card className="">
                 <CardBody>

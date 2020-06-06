@@ -8,7 +8,7 @@ class Header extends Component {
     return (
       //below line for bootstrap
       // <div className="text-center bg-primary text-white">
-      <div className="container">
+      <div className="container-fluid">
         <div className="row">
           <header className="col-12">
           {/* rmb to add a link here */}

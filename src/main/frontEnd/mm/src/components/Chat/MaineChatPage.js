@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import OneChatbox from './ChatPage/OneChatboxComponent';
+import OneChatbox from './OneChatboxComponent';
 
 class ChatPage extends Component {
 
@@ -12,7 +12,7 @@ class ChatPage extends Component {
 
     return (
       <div className="container-fluid">
-        <div className="row lightorange">
+        <div className="row orange">
           <OneChatbox />
         </div>
       </div>
