@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import Header from './HeaderComponent';
+import Details from './DetailsComponent';
 
-class ChatRoomHeader extends Component {
+class ProfilePage extends Component {
 
   render() {
     return (
-      <div className="row orange">
-        <Header />
+      <div className="container-fluid h-100">
+          <Header />
+          <Details />
       </div>
     );
   }
 }
 
-export default ChatRoomHeader;
+export default ProfilePage;

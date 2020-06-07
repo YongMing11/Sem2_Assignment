@@ -11,10 +11,8 @@ class ChatPage extends Component {
     }
 
     return (
-      <div className="container-fluid">
-        <div className="row orange">
+      <div className="container-fluid h-100">
           <OneChatbox />
-        </div>
       </div>
     );
   }

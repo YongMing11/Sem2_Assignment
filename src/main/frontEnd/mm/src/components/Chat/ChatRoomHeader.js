@@ -7,7 +7,7 @@ class ChatRoomHeader extends Component {
   render() {
     return (
       <div className="row light-orange">
-        <Media className="col-9">
+        <Media className="col-9 p-0">
           <Media left>
             <Media object src={image} alt="Generic placeholder image" className="m-2 round-image" />
           </Media>
@@ -18,7 +18,7 @@ class ChatRoomHeader extends Component {
             {/* put button to trigger a modal here */}
           </Media>
         </Media>
-        <div className="col-3 bg-success">
+        <div className="col-3">
           <Button outline className="border border-dark rounded-circle bg-light center info-button">
             <span className="fa fa-info fa-lg"></span>
           </Button>

@@ -6,7 +6,7 @@ class BottomNav extends Component {
 
   render() {
     return (
-        <div className="container-fluid w-100">
+        <div className="container-fluid">
           <Nav className="text-center">
             <div className="container-fluid w-100">
               <div className="row orange black">

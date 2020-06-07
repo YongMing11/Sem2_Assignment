@@ -12,15 +12,17 @@ class OneChat extends Component {
     }
 
     return (
-      <div className="col-12 p-0">
-        <div className="container-fluid p-0">
-          <div className="row light-orange">
-            <div className="col-9 col-lg-2 bg-success">
-              <LeftSide name={"He Lin"} lastMsgText={shownText} img="profilePic.png" />
-            </div>
+      <div className="row orange">
+        <div className="col-12 col-lg-4 py-0">
+          <div className="container-fluid p-0">
+            <div className="row light-orange">
+              <div className="col-9">
+                <LeftSide name={"He Lin"} lastMsgText={shownText} img="profilePic.png" />
+              </div>
 
-            <div className="col-3 col-lg-1 d-flex flex-column justify-content-center bg-info pr-4">
-              <RightSide unreadMsgNum={"100+"} lastMsgTime={"10:00p.m."} />
+              <div className="col-3 d-flex flex-column justify-content-center pr-4">
+                <RightSide unreadMsgNum={"100+"} lastMsgTime={"10:00p.m."} />
+              </div>
             </div>
           </div>
         </div>

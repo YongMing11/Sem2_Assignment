@@ -6,7 +6,7 @@ import ChatBar from './ChatBar';
 class ChatRoom extends Component {
   render() {
     return (
-      <div className="container-fluid d-flex flex-column h-100">
+      <div className="container-fluid h-100">
         <ChatRoomHeader />
         <ChatRoomBody />
         <ChatBar />
