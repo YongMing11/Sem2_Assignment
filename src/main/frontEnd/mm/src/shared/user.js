@@ -5,7 +5,7 @@ export const USERS =
       name: "He Lin 0",
       email: "helinchooi@gmail.com",
       password: "abcdef",
-      img: "../helin.png",
+      img: "../../HL Milk.png",
       gender: "male",
       age: "23",
       contact: "0123456789",

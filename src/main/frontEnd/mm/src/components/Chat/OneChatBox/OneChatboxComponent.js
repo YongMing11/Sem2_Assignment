@@ -5,23 +5,23 @@ import RightSide from './RightComponent';
 class OneChat extends Component {
 
   render() {
-    const text = "cuz we're running out of time";
-    let shownText = "";
-    if (text.length > 16) {
-      shownText = text.substring(0, 16) + "...";
+    let shownText = this.props.lastMsgText;
+    if (shownText.length > 16) {
+      shownText = shownText.substring(0, 16) + "...";
     }
-
+    let options = { hour: '2-digit', minute: '2-digit' };
     return (
       <div className="row orange">
         <div className="col-12 col-lg-4 py-0">
           <div className="container-fluid p-0">
             <div className="row light-orange">
-              <div className="col-9">
-                <LeftSide name={"He Lin"} lastMsgText={shownText} img="profilePic.png" />
+              <div className="col-8">
+                <LeftSide name={this.props.name} lastMsgText={shownText} img={this.props.img} />
               </div>
 
-              <div className="col-3 d-flex flex-column justify-content-center pr-4">
-                <RightSide unreadMsgNum={"100+"} lastMsgTime={"10:00p.m."} />
+              <div className="col-4 d-flex flex-column justify-content-center pr-4">
+                <RightSide unreadMsgNum={this.props.unreadMsgNum} lastMsgTime={new Date(this.props.lastMsgTime).toLocaleTimeString("en-US", options)} />
+                {/* <RightSide unreadMsgNum={this.props.unreadMsgNum} lastMsgTime={new Date(this.props.lastMsgTime).toLocaleTimeString("en-US", options)} /> */}
               </div>
             </div>
           </div>

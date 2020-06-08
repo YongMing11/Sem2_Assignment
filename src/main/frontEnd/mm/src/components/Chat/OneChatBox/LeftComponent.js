@@ -14,6 +14,7 @@ function LeftSide(props) {
         <Media body className="ml-1 mt-1">
           <Media heading className="m-0 p-0 mt-2">
             {props.name}
+            {/* {"He Lin"} */}
           </Media>
           <div className="m-0 p-0">
             {props.lastMsgText}

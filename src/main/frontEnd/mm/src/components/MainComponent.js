@@ -2,18 +2,40 @@ import React, { Component } from 'react';
 import Header from './HeaderComponent';
 import BottomNav from './BottomNavComponent';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import ChatPage from './Chat/MainChatPage';
-import ProfilePage from './ProfilePage/Main';
+import Chat from './Chat/MainChatPage';
 import ChatRoom from './Chat/MainChatRoom';
+import Profile from './ProfilePage/MainProfilePage';
 import SearchArea from './SearchPage/SearchAreaComponent';
 import ResultPage from './SearchPage/SearchResultPage/Main';
+import { USERS } from '../shared/user';
+
+//identify the user by this manual uid
+const uid = 1;
 
 class Main extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: USERS.filter((user) => {
+        return user.uid === uid;
+      })[0]
+    }
+  }
   render() {
-    const FindPage = () => {
+    const ProfilePage = () => {
       return (
-        <div></div>
+        <Profile user={this.state.user} />
+      );
+    }
+    const ChatPage = () => {
+      return (
+        <Chat user={this.state.user} />
+      );
+    }
+    const ChatRoomPage = ({match}) => {
+      return (
+        <ChatRoom uid={this.state.user.uid} friendUid={match.params.uid}/>
       );
     }
 
@@ -27,7 +49,8 @@ class Main extends Component {
           <div className="col-12 p-0">
             <Switch>
               <Route path="/find" component={SearchArea} />
-              <Route path="/chat" component={ChatPage} />
+              <Route exact path="/chat" component={ChatPage} />
+              <Route path="/chat/:uid" component={ChatRoomPage} />
               <Route path="/profile" component={ProfilePage} />
               {/* below are subpages */}
               <Route path="/result" component={ResultPage} />

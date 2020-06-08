@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom';
 
 class SearchArea extends Component {
 
-  
-
   render() {
     return (
       <div className="container-fluid h-100 d-flex justify-content-center">
@@ -25,7 +23,8 @@ class SearchArea extends Component {
 
                 <div className="col-1 pr-0 py-3 d-flex flex-row-reverse"><span>0</span></div>
                 <div className="col-10 py-3">
-                  <CustomInput step={10} type="range" id="exampleCustomRange" name="customRange"></CustomInput>
+                  <CustomInput step={10} type="range" id="exampleCustomRange" name="customRange">
+                  </CustomInput>
                 </div>
                 <div className="col-1 p-0 py-3"><span>100</span></div>
               </FormGroup>
@@ -42,7 +41,7 @@ class SearchArea extends Component {
           </div>
         </div>
 
-        
+
       </div>
     );
   }

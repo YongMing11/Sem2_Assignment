@@ -8,7 +8,7 @@ class ChatRoom extends Component {
     return (
       <div className="container-fluid h-100">
         <ChatRoomHeader />
-        <ChatRoomBody />
+        <ChatRoomBody uid={this.props.uid} friendUid={this.props.friendUid}/>
         <ChatBar />
       </div>
     );
