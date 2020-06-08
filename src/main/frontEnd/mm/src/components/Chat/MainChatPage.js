@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import OneChatbox from './OneChatboxComponent';
+import OneChatbox from './OneChatBox/OneChatboxComponent';
 
 class ChatPage extends Component {
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Media } from 'reactstrap';
-import image from '../../images/GenericProfilePic.png';
+import image from '../../../images/GenericProfilePic.png';
 
 function LeftSide(props) {
   return (
