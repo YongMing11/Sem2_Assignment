@@ -11,12 +11,10 @@ class ChatRoomBody extends Component {
   render() {
 
     const AllMsgWithId = ({ msg }) => {
-      console.log(msg);
       return (
         msg.map((oneMsg) => {
           if (oneMsg.byMe) {
-            console.log("yes");
-            return <div className="row">
+            return <div key={oneMsg.id} className="row">
               <div className="offset-3 col-9">
                 <Card className="m-1">
                   <CardBody>
@@ -26,8 +24,7 @@ class ChatRoomBody extends Component {
               </div>
             </div>;
           } else {
-            console.log("no");
-            return <div className="row">
+            return <div key={oneMsg.id} className="row">
               <div className="col-9">
                 <Card className="m-1">
                   <CardBody>
@@ -48,11 +45,14 @@ class ChatRoomBody extends Component {
       })[0].msg;
 
     return (
-      <div className="row">
+      <>
+      <div className="row bg-dark">
         <div className="container-fluid">
           <AllMsgWithId msg={msg}/>
         </div>
       </div>
+      <div className="row fixed-bottom-height bg-dark"></div>
+      </>
     );
   }
 }

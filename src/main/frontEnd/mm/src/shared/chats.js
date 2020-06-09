@@ -11,24 +11,58 @@ export const CHATS = [
         name:"He Lin 0",
         msg: [
           {
+            id:0,
             byMe: true,
             msgText: "Hi, I am He Lin 1",
             timestamp: "2014-09-05T17:57:28.556094Z"
           },
           {
+            id:1,
             byMe: false,
             msgText: "Hi, I am He Lin 0",
             timestamp: "2014-09-05T17:57:28.556094Z"
           },
           {
+            id:2,
             byMe: true,
             msgText: "Nice to meet you He Lin 0",
             timestamp: "2014-09-05T17:57:28.556094Z"
           },
           {
+            id:3,
             byMe: false,
             msgText: "Nice to meet you too",
             timestamp: "2014-09-05T17:57:28.556094Z"
+          },
+          {
+            id:4,
+            byMe: true,
+            msgText: "Hi?",
+            timestamp: "2014-09-05T23:57:28.556094Z"
+          },
+          {
+            id:5,
+            byMe: true,
+            msgText: "Hello, anyone there?",
+            timestamp: "2014-09-07T19:57:28.556094Z"
+          },
+          {
+            id:6,
+            byMe: true,
+            msgText: "...",
+            timestamp: "2014-09-08T19:57:28.556094Z"
+          },
+          {
+            id:7,
+            byMe: true,
+            msgText: "...",
+            timestamp: "2014-09-08T19:57:28.556094Z"
+          },
+          {
+            id:8,
+            byMe: true,
+            msgText: "dont ignore me...",
+            timestamp: "2014-10-01T19:57:28.556094Z"
           }
         ]
       },
@@ -41,21 +75,25 @@ export const CHATS = [
         name:"He Lin 2",
         msg: [
           {
+            id:0,
             byMe: true,
             msgText: "Hi, I am He Lin 1",
             timestamp: "2014-09-05T17:57:28.556094Z"
           },
           {
+            id:1,
             byMe: false,
             msgText: "Hi, I am He Lin 2",
             timestamp: "2014-09-05T17:57:28.556094Z"
           },
           {
+            id:2,
             byMe: true,
             msgText: "Nice to meet you He Lin 2",
             timestamp: "2014-09-05T17:57:28.556094Z"
           },
           {
+            id:3,
             byMe: false,
             msgText: "Nice to meet you too",
             timestamp: "2014-09-05T17:57:28.556094Z"

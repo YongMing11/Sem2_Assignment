@@ -6,8 +6,8 @@ import ChatBar from './ChatBar';
 class ChatRoom extends Component {
   render() {
     return (
-      <div className="container-fluid h-100">
-        <ChatRoomHeader />
+      <div className="container-fluid">
+        <ChatRoomHeader friendUid={this.props.friendUid}/>
         <ChatRoomBody uid={this.props.uid} friendUid={this.props.friendUid}/>
         <ChatBar />
       </div>

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Card, CardBody, CardText, CardTitle, CardImg, Button } from 'reactstrap';
 // import image from '../../../images/GenericProfilePic.png';
 import ResultArea from './ResultArea';
 

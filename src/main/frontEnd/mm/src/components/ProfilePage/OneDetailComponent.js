@@ -4,12 +4,12 @@ class OneDetail extends Component {
 
   render() {
     return (
-      <div className="row light-orange">
-        <div className="col-5">
-          <h5>{"Age"}</h5>
+      <div className="row light-orange pt-1">
+        <div className="col-6">
+          <h5>{this.props.item}</h5>
         </div>
         <div className="col-5">
-          <h5>{"20"}</h5>
+          <h5>{this.props.value}</h5>
         </div>
       </div>
     );

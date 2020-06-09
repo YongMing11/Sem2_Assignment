@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from './HeaderComponent';
 import BottomNav from './BottomNavComponent';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import Chat from './Chat/MainChatPage';
+import MainChatPage from './Chat/MainChatPage';
 import ChatRoom from './Chat/MainChatRoom';
 import Profile from './ProfilePage/MainProfilePage';
 import SearchArea from './SearchPage/SearchAreaComponent';
@@ -11,7 +11,6 @@ import { USERS } from '../shared/user';
 
 //identify the user by this manual uid
 const uid = 1;
-
 class Main extends Component {
 
   constructor(props) {
@@ -20,22 +19,61 @@ class Main extends Component {
       user: USERS.filter((user) => {
         return user.uid === uid;
       })[0]
+      // isNavShown:true
+    }
+    // this.toggleNavShown = this.toggleNavShown.bind(this);
+    this.handleProfileChange = this.handleProfileChange.bind(this);
+  }
+
+  handleProfileChange(event) {
+    const target = event.target;
+    const name = target.name;
+    const value = target.value;
+
+    if (name.includes("fav")) {
+      this.setState({
+        user: {
+          ...this.state.user,
+          interests: {
+            ...this.state.user.interests,
+            [name]: value
+          }
+        }
+      });
+    } else {
+      this.setState({
+        user: {
+          ...this.state.user,
+          [name]: value
+        }
+      });
     }
   }
+
+  // toggleNavShown(){
+  //   console.log("toggling!");
+  //   console.log("current value is " + this.state.isNavShown);
+  //   this.setState({
+  //     isNavShown : !this.state.isNavShown
+  //   });
+  //   console.log("now value is " + this.state.isNavShown);
+  // }
+
   render() {
     const ProfilePage = () => {
       return (
-        <Profile user={this.state.user} />
+        <Profile user={this.state.user} handleProfileChange={this.handleProfileChange} />
       );
     }
     const ChatPage = () => {
       return (
-        <Chat user={this.state.user} />
+        <MainChatPage user={this.state.user} toggleNavShown={this.toggleNavShown} />
       );
     }
-    const ChatRoomPage = ({match}) => {
+    const ChatRoomPage = ({ match }) => {
+
       return (
-        <ChatRoom uid={this.state.user.uid} friendUid={match.params.uid}/>
+        <ChatRoom uid={this.state.user.uid} friendUid={match.params.uid} toggleNavShown={this.toggleNavShown} />
       );
     }
 
@@ -60,8 +98,9 @@ class Main extends Component {
           </div>
         </div>
 
-        <div className="row fixed-bottom">
-          <div className="col-12 m-0 p-0">
+        {/* <div className={this.state.isNavShown?"row":"hidden"}> */}
+        <div className={"row fixed-bottom"}>
+          <div className="col-12 m-0">
             <BottomNav />
           </div>
         </div>
