@@ -12,9 +12,9 @@ class ProfilePage extends Component {
 
   render() {
     return (
-      <div className="container-fluid h-100">
+      <div className="container h-100">
           <Header name={this.props.user.name} img={this.props.user.img}/>
-          <Details user={this.props.user} handleProfileChange={this.props.handleProfileChange}/>
+          <Details user={this.props.user} />
       </div>
     );
   }

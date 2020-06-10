@@ -7,6 +7,9 @@ import ChatRoom from './Chat/MainChatRoom';
 import Profile from './ProfilePage/MainProfilePage';
 import SearchArea from './SearchPage/SearchAreaComponent';
 import ResultPage from './SearchPage/SearchResultPage/Main';
+import LoginPage from './LoginPageComponent';
+import SignUp from './SignUpComponent';
+import Register from './RegisterComponent';
 import { USERS } from '../shared/user';
 
 //identify the user by this manual uid
@@ -22,33 +25,8 @@ class Main extends Component {
       // isNavShown:true
     }
     // this.toggleNavShown = this.toggleNavShown.bind(this);
-    this.handleProfileChange = this.handleProfileChange.bind(this);
   }
 
-  handleProfileChange(event) {
-    const target = event.target;
-    const name = target.name;
-    const value = target.value;
-
-    if (name.includes("fav")) {
-      this.setState({
-        user: {
-          ...this.state.user,
-          interests: {
-            ...this.state.user.interests,
-            [name]: value
-          }
-        }
-      });
-    } else {
-      this.setState({
-        user: {
-          ...this.state.user,
-          [name]: value
-        }
-      });
-    }
-  }
 
   // toggleNavShown(){
   //   console.log("toggling!");
@@ -62,18 +40,18 @@ class Main extends Component {
   render() {
     const ProfilePage = () => {
       return (
-        <Profile user={this.state.user} handleProfileChange={this.handleProfileChange} />
+        <Profile user={this.state.user} />
       );
     }
     const ChatPage = () => {
       return (
-        <MainChatPage user={this.state.user} toggleNavShown={this.toggleNavShown} />
+        <MainChatPage user={this.state.user} />
       );
     }
     const ChatRoomPage = ({ match }) => {
 
       return (
-        <ChatRoom uid={this.state.user.uid} friendUid={match.params.uid} toggleNavShown={this.toggleNavShown} />
+        <ChatRoom uid={this.state.user.uid} friendUid={match.params.uid} />
       );
     }
 
@@ -86,14 +64,19 @@ class Main extends Component {
         <div className="row bg-dark h-100">
           <div className="col-12 p-0">
             <Switch>
+              <Route exact path="/login" component={LoginPage} />
+              <Route exact path="/signup" exact component={SignUp} />
+              <Route path="/signup/register" component={Register} />
+
               <Route path="/find" component={SearchArea} />
               <Route exact path="/chat" component={ChatPage} />
               <Route path="/chat/:uid" component={ChatRoomPage} />
               <Route path="/profile" component={ProfilePage} />
+
               {/* below are subpages */}
               <Route path="/result" component={ResultPage} />
               {/* 404 should put here */}
-              <Redirect to="/find" />
+              <Redirect to="/login" />
             </Switch>
           </div>
         </div>

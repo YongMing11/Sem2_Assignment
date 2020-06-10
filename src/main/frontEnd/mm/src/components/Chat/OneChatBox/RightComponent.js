@@ -12,7 +12,7 @@ function RightSide(props) {
       </div>
 
       <div className="row d-flex flex-row-reverse">
-        <div className="unread-msg-num m-1">
+        <div className={props.isUnread===0?"hidden":"unread-msg-num m-1"}>
           {props.unreadMsgNum}
         </div>
       </div>

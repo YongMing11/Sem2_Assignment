@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Form, FormGroup, Input, Label, Button, CustomInput } from 'reactstrap';
-import OneCard from './SearchResultPage/OneCard';
 import { Link } from 'react-router-dom';
 
 class SearchArea extends Component {

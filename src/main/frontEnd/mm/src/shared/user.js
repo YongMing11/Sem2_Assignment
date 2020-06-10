@@ -7,7 +7,7 @@ export const USERS =
       password: "abcdef",
       img: "../../HL Milk.png",
       gender: "male",
-      age: "23",
+      age: "35",
       contact: "0123456789",
       address: "UM KK8",
       interests: {
