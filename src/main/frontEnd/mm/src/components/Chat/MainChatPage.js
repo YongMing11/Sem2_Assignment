@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import OneChatbox from './OneChatBox/OneChatboxComponent';
 import { Link } from 'react-router-dom';
 import { CHATS } from '../../shared/chats';
-
+import BottomNav from '../BottomNavComponent';
 
 class MainChatPage extends Component {
 
@@ -25,6 +25,11 @@ class MainChatPage extends Component {
     return (
       <div className="container-fluid h-100">
         {chats}
+        <div className={"row fixed-bottom"}>
+          <div className="col-12 m-0">
+            <BottomNav />
+          </div>
+        </div>
       </div>
     );
   }

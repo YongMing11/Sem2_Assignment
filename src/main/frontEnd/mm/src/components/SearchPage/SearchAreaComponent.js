@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Form, FormGroup, Input, Label, Button, CustomInput } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import BottomNav from '../BottomNavComponent';
 
 class SearchArea extends Component {
 
@@ -40,6 +41,11 @@ class SearchArea extends Component {
           </div>
         </div>
 
+        <div className={"row fixed-bottom"}>
+          <div className="col-12 m-0">
+            <BottomNav />
+          </div>
+        </div>
 
       </div>
     );

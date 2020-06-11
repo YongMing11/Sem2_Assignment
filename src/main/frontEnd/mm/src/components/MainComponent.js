@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import Header from './HeaderComponent';
-import BottomNav from './BottomNavComponent';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect, Link } from 'react-router-dom';
 import MainChatPage from './Chat/MainChatPage';
 import ChatRoom from './Chat/MainChatRoom';
 import Profile from './ProfilePage/MainProfilePage';
 import SearchArea from './SearchPage/SearchAreaComponent';
 import ResultPage from './SearchPage/SearchResultPage/Main';
-import LoginPage from './LoginPageComponent';
-import SignUp from './SignUpComponent';
-import Register from './RegisterComponent';
+import LoginPage from './SignUp/LoginPageComponent';
+import SignUp from './SignUp/SignUpComponent';
+import Register from './SignUp/RegisterComponent';
 import { USERS } from '../shared/user';
 
 //identify the user by this manual uid
@@ -22,20 +21,8 @@ class Main extends Component {
       user: USERS.filter((user) => {
         return user.uid === uid;
       })[0]
-      // isNavShown:true
     }
-    // this.toggleNavShown = this.toggleNavShown.bind(this);
   }
-
-
-  // toggleNavShown(){
-  //   console.log("toggling!");
-  //   console.log("current value is " + this.state.isNavShown);
-  //   this.setState({
-  //     isNavShown : !this.state.isNavShown
-  //   });
-  //   console.log("now value is " + this.state.isNavShown);
-  // }
 
   render() {
     const ProfilePage = () => {
@@ -57,8 +44,8 @@ class Main extends Component {
 
     return (
       <div className="container-fluid d-flex flex-column flex-start brown h-100">
-        <div className="row bg-warning">
-          <Header />
+        <div className="row orange">
+            <Header />
         </div>
 
         <div className="row bg-dark h-100">
@@ -82,11 +69,11 @@ class Main extends Component {
         </div>
 
         {/* <div className={this.state.isNavShown?"row":"hidden"}> */}
-        <div className={"row fixed-bottom"}>
+        {/* <div className={"row fixed-bottom"}>
           <div className="col-12 m-0">
             <BottomNav />
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }

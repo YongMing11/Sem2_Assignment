@@ -13,9 +13,11 @@ class Register extends Component {
             gender: '',
             birthdate: '',
             telnum: '',
-            sports: '',
+            sport: '',
             music: '',
             food: '',
+            movie:'',
+            book:'',
             query: '',
             apikey: '99f8f42735854ae7bff77ad5fe37d8ef',
             latitude: '',
@@ -178,6 +180,7 @@ class Register extends Component {
                         </FormGroup>
 
                         {console.log(errors.query)}
+                        
                         <FormGroup row>
                             <Label htmlFor="livingAddress" md={3}>Living Address</Label>
                             <Col md={8}>
@@ -197,27 +200,21 @@ class Register extends Component {
                         <FormGroup row>
                             <Label htmlFor="interest" md={3}>Interests</Label>
                             <Col md={{ size: 5 }}>
-                                <Input type="select" name="sports"
-                                    value={this.state.sports}
+                                <Input type="select" name="sport"
+                                    value={this.state.sport}
                                     onChange={this.handleInputChange}>
                                     <option>--No Fav Sport--</option>
                                     <option>Basketball</option>
                                     <option>Volleyball</option>
-                                    <option>Football</option>
+                                    <option>Jogging</option>
                                     <option>Futsal</option>
-                                    <option>Badminton</option>
-                                    <option>Tennis</option>
                                     <option>Table Tennis</option>
-                                    <option>Running</option>
-                                    <option>Chess</option>
                                     <option>E-sports</option>
-                                    <option>Swimming</option>
-                                    <option>Bowling</option>
                                     <option>Not in the list</option>
                                 </Input>
                             </Col>
-
                         </FormGroup>
+
                         <FormGroup row>
                             <Col md={{ size: 5, offset: 3 }}>
                                 <Input type="select" name="music"
@@ -230,34 +227,62 @@ class Register extends Component {
                                     <option>Dance/Electronic/House</option>
                                     <option>Soundtracks</option>
                                     <option>Hip-Hop/Rap/Trap</option>
-                                    <option>Classical/Opera</option>
-                                    <option>R&B</option>
-                                    <option>Soul/Blues</option>
-                                    <option>Metal</option>
                                     <option>Not in the list</option>
 
                                 </Input>
                             </Col>
                         </FormGroup>
+
                         <FormGroup row>
                             <Col md={{ size: 5, offset: 3 }}>
                                 <Input type="select" name="food"
                                     value={this.props.food}
                                     onChange={this.handleInputChange}>
                                     <option>--No Fav Food--</option>
-                                    <option>Fast Food</option>
-                                    <option>Hot Pot</option>
-                                    <option>Western food</option>
-                                    <option>Malay food</option>
-                                    <option>Chinese food</option>
-                                    <option>Indian food</option>
-                                    <option>Dessert</option>
+                                    <option>Rendang</option>
+                                    <option>Sushi</option>
+                                    <option>Dim sum</option>
+                                    <option>Ramen</option>
+                                    <option>Kimchi</option>
+                                    <option>Ice cream</option>
                                     <option>Not in the list</option>
-
                                 </Input>
                             </Col>
                         </FormGroup>
 
+                        <FormGroup row>
+                            <Col md={{ size: 5, offset: 3 }}>
+                                <Input type="select" name="movie"
+                                    value={this.state.movie}
+                                    onChange={this.handleInputChange}>
+                                    <option>--No Fav Movie--</option>
+                                    <option>Action</option>
+                                    <option>Comedy</option>
+                                    <option>Crime</option>
+                                    <option>Horror</option>
+                                    <option>Romance</option>
+                                    <option>Sci-fi</option>
+                                    <option>Not in the list</option>
+                                </Input>
+                            </Col>
+                        </FormGroup>
+
+                        <FormGroup row>
+                            <Col md={{ size: 5, offset: 3 }}>
+                                <Input type="select" name="book"
+                                    value={this.state.book}
+                                    onChange={this.handleInputChange}>
+                                    <option>--No Fav Book--</option>
+                                    <option>Adventure</option>
+                                    <option>Biography</option>
+                                    <option>Classics</option>
+                                    <option>Crime</option>
+                                    <option>Horror</option>
+                                    <option>Romance</option>
+                                    <option>Not in the list</option>
+                                </Input>
+                            </Col>
+                        </FormGroup>
 
                         <FormGroup row className='col-12'>
                             <Col md={{ size: 10, offset: 2 }}>

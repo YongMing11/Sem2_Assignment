@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 // why caa't find these modules???
 // import 'bootstrap/dist/css/bootstrap.css';
 // import 'bootstrap/dist/css/bootstrap-theme.css';
@@ -6,16 +7,12 @@ import React, { Component } from 'react';
 class Header extends Component {
   render() {
     return (
-      //below line for bootstrap
-      // <div className="text-center bg-primary text-white">
-      <div className="container-fluid">
-        <div className="row">
-          <header className="col-12">
+      <header className="col-12">
+        <Link to="/find">
           {/* rmb to add a link here */}
-            <h3 className="noselect text-center">MeowMeow</h3>
-          </header>
-        </div>
-      </div>
+          <h3 className="noselect text-center">MeowMeow</h3>
+        </Link>
+      </header>
     );
   }
 }

@@ -30,7 +30,6 @@ html, body, #root {
 header {
   padding: 3px;
   margin: 0em;
-  background-color: rgb(240, 175, 91);
 }
 
 .nav-link {
@@ -40,14 +39,19 @@ header {
   color: black;
 }
 
+.third{
+  background-color: #6E4C1E;
+  /* background-color: #A13941; */
+}
+
 .orange {
-  background-color: rgb(240, 175, 91);
-  /* margin: 0 30px; */
+  /* background-color:#EEB238; */
+  background-color:#F3DB74;
 }
 
 .light-orange {
-  background-color: rgb(245, 198, 136);
-  /* margin: 0 30px; */
+  /* background-color: rgb(255, 228, 137); */
+  background-color: #F0E1B9;
 }
 
 .text-black {
@@ -109,8 +113,8 @@ a, a::after, a:active, a:hover, a:visited {
 }
 
 .fixed-bottom-height{
-  height: 90px;
-  min-height: 90px;
+  height: 50x;
+  min-height: 50px;
 }
 
 .fixed-bottom-height-2{

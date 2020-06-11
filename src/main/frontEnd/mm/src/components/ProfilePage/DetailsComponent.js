@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, Label, Input, Form, FormGroup } from 'reactstrap';
 import OneDetail from './OneDetailComponent';
 
 class Info extends Component {
@@ -21,6 +20,8 @@ class Info extends Component {
             <OneDetail item={`Favorite Sport`}value={user.interests.favSport}/>
             <OneDetail item={`Favorite Music`}value={user.interests.favMusic}/>
             <OneDetail item={`Favorite Food`}value={user.interests.favFood}/>
+            <OneDetail item={`Favorite Movie`}value={user.interests.favMovie}/>
+            <OneDetail item={`Favorite Book`}value={user.interests.favBook}/>
           </div>
         </div>
       </>

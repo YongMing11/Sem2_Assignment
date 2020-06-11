@@ -42,26 +42,26 @@ export const CHATS = [
           },
           {
             id:5,
-            byMe: true,
-            msgText: "Hello, anyone there?",
+            byMe: false,
+            msgText: "Yeay?",
             timestamp: "2014-09-07T19:57:28.556094Z"
           },
           {
             id:6,
             byMe: true,
-            msgText: "...",
+            msgText: "Tell me more about you",
             timestamp: "2014-09-08T19:57:28.556094Z"
           },
           {
             id:7,
-            byMe: true,
-            msgText: "...",
+            byMe: false,
+            msgText: "I travelled to Moon yesterday!",
             timestamp: "2014-09-08T19:57:28.556094Z"
           },
           {
             id:8,
             byMe: true,
-            msgText: "dont ignore me...",
+            msgText: "That's awesome!",
             timestamp: "2014-10-01T19:57:28.556094Z"
           }
         ]

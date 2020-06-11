@@ -13,7 +13,9 @@ export const USERS =
       interests: {
         favSport:"Jogging",
         favMusic:"Alternative",
-        favFood:"Durian"
+        favFood:"Rendang",
+        favMovie:"Horror",
+        favBook:"Adventure"
       },
       chatWith:[1,2,3]
     },
@@ -26,11 +28,13 @@ export const USERS =
       gender: "male",
       age: "23",
       contact: "0123456789",
-      address: "UM KK8",
+      address: "UM KK1",
       interests: {
         favSport:"Jogging",
         favMusic:"Alternative",
-        favFood:"Durian"
+        favFood:"Kimchi",
+        favMovie:"Romance",
+        favBook:"Romance"
       },
       chatWith:[0,3]
     },
@@ -43,29 +47,14 @@ export const USERS =
       gender: "male",
       age: "23",
       contact: "0123456789",
-      address: "UM KK8",
+      address: "UM KK2",
       interests: {
         favSport:"Jogging",
         favMusic:"Alternative",
-        favFood:"Durian"
+        favFood:"Dim sum",
+        favMovie:"Horror",
+        favBook:"Biography"
       },
       chatWith:[0,1]
-    },
-    {
-      uid: 3,
-      name: "He Lin 3",
-      email: "helinchooi@gmail.com",
-      password: "abcdef",
-      img: "../helin.png",
-      gender: "male",
-      age: "23",
-      contact: "0123456789",
-      address: "UM KK8",
-      interests: {
-        favSport:"Jogging",
-        favMusic:"Alternative",
-        favFood:"Durian"
-      },
-      chatWith:[1,2,3]
-    },
+    }
   ];
