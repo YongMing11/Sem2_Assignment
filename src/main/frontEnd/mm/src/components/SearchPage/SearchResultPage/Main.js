@@ -9,7 +9,7 @@ class ResultPage extends Component {
         {/* <div className="row flex-row-reverse">
         <Button onClick={this.props.handleSearch} className="bg-info">Sort</Button>
         </div> */}
-          <ResultArea />
+          <ResultArea minDist={this.props.minDist}/>
       </div>
     );
   }

@@ -12,15 +12,34 @@ class MainChatPage extends Component {
 
   render() {
 
-    const friends = CHATS.filter((user) => {
-      return (user.uid === this.props.user.uid)
-    })[0].withUser;
-
-    const chats = friends.map((friend) => {
-      return <Link key={friend.uid} to={`/chat/${friend.uid}`} >
+    // const chats = friends.map((friend) => {
+    //   return <Link key={friend.uid} to={`/chat/${friend.uid}`} >
+    //     <OneChatbox user={this.props.user} friendUid={friend.uid} unreadMsgNum={friend.unreadMsgNum} lastMsgTime={friend.lastMsgTime} lastMsgText={friend.lastMsgText} img={friend.img} name={friend.name} />
+    //   </Link>
+    // });
+    const friend = {
+      uid: 0,
+      name: "He Lin 0",
+      email: "helinchooi@gmail.com",
+      password: "abcdef",
+      img: "../../HL Milk.png",
+      gender: "male",
+      birthdate: "3/3/2000",
+      age: "20",
+      contact: "0123456789",
+      address: "UM KK8",
+      interests: {
+        favSport: "Jogging",
+        favMusic: "Alternative",
+        favFood: "Rendang",
+        favMovie: "Horror",
+        favBook: "Adventure"
+      },
+      chatWith: [1, 2, 3]
+    };
+    const chats = <Link to={`/chat/${friend.uid}`} >
         <OneChatbox user={this.props.user} friendUid={friend.uid} unreadMsgNum={friend.unreadMsgNum} lastMsgTime={friend.lastMsgTime} lastMsgText={friend.lastMsgText} img={friend.img} name={friend.name} />
-      </Link>
-    });
+      </Link>;
 
     return (
       <div className="container-fluid h-100">
