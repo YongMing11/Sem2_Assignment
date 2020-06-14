@@ -1,0 +1,14 @@
+{
+  "username": "Username1",
+  "gender": "Gender",
+  "birthDate": "3900-08-31T16:00:00.000+00:00",
+  "contact": "0101234567",
+  "address": "Ur moms house, jalan ibu",
+  "interests": {
+    "sport": "Sport",
+    "music": "Music",
+    "food": "Food",
+    "movie": "Movie",
+    "book": "Book"
+  }
+}

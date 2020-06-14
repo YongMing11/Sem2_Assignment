@@ -22,7 +22,7 @@ class Login extends Component {
   handleInputChange(event) {
     const target = event.target;
     const value = target.type === 'checkbox' ?
-    target.checked : target.value;
+      target.checked : target.value;
     const name = target.name;
 
     this.setState({
@@ -48,14 +48,15 @@ class Login extends Component {
       email: '',
       password: ''
     }
-    if (this.state.touched.email && email.split('').filter(x => x === '@').length !== 1)
-      errors.email = "Email should contain a @";
-    else {
+    const emailRegex = /\w+@\w+[.]\w+/;
+    if (this.state.touched.email && !emailRegex.test(email)) {
+      errors.email = "Email format invalid";
+    } else {
       errors.email = '';
     }
 
-    if (this.state.touched.password && (password.length < 5 || password.length > 10))
-      errors.password = "Password length should be in the range of 5-10"
+    if (this.state.touched.password && password.length === 0)
+      errors.password = "Password length should be not be 0"
     else {
       errors.password = '';
     }
@@ -66,8 +67,8 @@ class Login extends Component {
   render() {
     const errors = this.validate(this.state.email, this.state.password);
     return (
-      <div className="container">
-        <div className="row light-orange">
+      <div className="container h-100">
+        <div className="row light-orange h-100">
           <div className="col-12 p-3 py-5">
             <Form className="Login">
               <FormGroup>
@@ -112,8 +113,8 @@ class Login extends Component {
           </div>
 
           <div className="col-12 d-flex">
-              <button className="tantan" type="text" id="tantan" href="https://tantanapp.com/en" />
-              <button className="tinder" type="text" id="tinder" href="https://tinder.com/" />
+            <button className="tantan" type="text" id="tantan" href="https://tantanapp.com/en" />
+            <button className="tinder" type="text" id="tinder" href="https://tinder.com/" />
           </div>
         </div>
       </div>

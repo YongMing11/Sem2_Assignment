@@ -29,6 +29,7 @@ class SignUp extends Component {
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        // this.validateIfEmpty = this.validateIfEmpty.bind(this);
     }
 
     handleInputChange(event) {
@@ -43,6 +44,7 @@ class SignUp extends Component {
     }
 
     handleSubmit(event) {
+        console.log(event);
         alert("Welcome to MeowMeow World !\n" + JSON.stringify(this.state));
         //INSERT BACKEND VERIFICATION
         // history.push("/signup/register");
@@ -60,31 +62,47 @@ class SignUp extends Component {
             username: '',
             email: '',
             password: '',
-            gender: '',
-            telnum: '',
-            livingAddress: ''
         }
         if (this.state.touched.username && username.length < 5) {
             errors.username = "Username must have at least 5 characters"
         }
-
-        if (this.state.touched.email && email.split('').filter(x => x === '@').length !== 1)
-            errors.email = "Email should contain a @";
+        const emailRegex = /^\w+@\w+[.]\w+$/;
+        if (this.state.touched.email && !emailRegex.test(email))
+            errors.email = "Please input valid email format";
         else {
             errors.email = '';
         }
 
-        if (this.state.touched.password && (password.length < 5 || password.length > 10))
-            errors.password = "Password length should be in the range of 5-10"
+        if (this.state.touched.password && (password.length < 6 || password.length > 10))
+            errors.password = "Password length should be in the range of 6-10"
         else {
             errors.password = '';
         }
-
-
-
+        if(password.length === 0){
+            errors.password = "Password length should be in the range of 6-10"
+        }
+        if(email.length === 0){
+            errors.email = "Please input valid email format";
+        }
+        if(username.length === 0){
+            errors.username = "Username must have at least 5 characters"
+        }
         return errors;
     }
 
+    // validateIfEmpty(errors, username, email, password){
+    //     console.log("validating");
+    //     if(password.length === 0){
+    //         errors.password = "Password length should be in the range of 6-10"
+    //     }
+    //     if(email.length === 0){
+    //         errors.email = "Invalid email format";
+    //     }
+    //     if(username.length === 0){
+    //         errors.username = "Username must have at least 5 characters"
+    //     }
+    //     return errors;
+    // }
 
     render() {
         const errors = this.validate(this.state.username, this.state.email, this.state.password);
@@ -94,7 +112,7 @@ class SignUp extends Component {
                     <div className="col-12 p-3 py-4">
                         <Form>
                             <FormGroup>
-                                <Input type="text" id="username" required
+                                <Input type="text" id="username"
                                     placeholder="New Username"
                                     name="username"
                                     value={this.state.username}
@@ -106,7 +124,7 @@ class SignUp extends Component {
                             </FormGroup>
 
                             <FormGroup>
-                                <Input type="text" id="email" required
+                                <Input type="text" id="email"
                                     placeholder="Email Address"
                                     name="email"
                                     value={this.state.email}
@@ -118,7 +136,8 @@ class SignUp extends Component {
                             </FormGroup>
 
                             <FormGroup>
-                                <Input type="text" id="loginPassword" required placeholder="New Password"
+                                <Input type="text" id="loginPassword"
+                                    placeholder="New Password"
                                     name="password"
                                     value={this.state.password}
                                     valid={errors.password === ''}
@@ -129,7 +148,11 @@ class SignUp extends Component {
                             </FormGroup>
                             <div className="col-12 d-flex flex-row justify-content-center">
                                 <Link to="/signup/register">
-                                    <button type="sign up" id="signUp" className="bg-warning" onClick={this.handleSubmit}>Sign Up</button>
+                                    <button type="sign up" id="signUp" className="bg-warning" 
+                                    onClick={() => {
+                                        this.handleSubmit();
+                                        // this.validateIfEmpty(errors,this.state.username,this.state.email,this.state.password);
+                                        }}>Sign Up</button>
                                 </Link>
                             </div>
                         </Form>

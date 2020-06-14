@@ -4,12 +4,6 @@ import { CHATS } from '../../shared/chats';
 
 class ChatRoomBody extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-
-  
-
   render() {
 
     const AllMsgWithId = ({ msg }) => {

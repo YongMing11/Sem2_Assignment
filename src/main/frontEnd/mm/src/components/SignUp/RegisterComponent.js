@@ -16,8 +16,8 @@ class Register extends Component {
             sport: '',
             music: '',
             food: '',
-            movie:'',
-            book:'',
+            movie: '',
+            book: '',
             query: '',
             apikey: '99f8f42735854ae7bff77ad5fe37d8ef',
             latitude: '',
@@ -97,20 +97,39 @@ class Register extends Component {
             query: ''
         }
         console.log(this.state.touched.birthdate + " here");
-        if (!this.state.touched.birthdate || (birthdate.split('/').filter(x => (isNaN(x))).length !== 0)) {
-            errors.birthdate = "Invalid format"
+        const birthdateRegex = /^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[012])\/\d{4}$/;
+        function isDateBeforeToday(date) {
+            return new Date(date.toDateString()) < new Date(new Date().toDateString());
+        }
+        const day = Number(birthdate.substring(0,2));
+        const month =Number(birthdate.substring(3,5));
+        const year = Number(birthdate.substring(6));
+        const beforeToday = isDateBeforeToday(new Date(year, month, day));
+        if (this.state.touched.birthdate && birthdateRegex.test(birthdate)) {
+            errors.birthdate = "Invalid format";
+        }else if(beforeToday){
+            errors.birthdate = 'The date must before today';
         } else errors.birthdate = '';
 
-        if (!this.state.touched.telnum || isNaN(telnum)) {
-            errors.telnum = "Tel number only contains digits"
+        if (this.state.touched.telnum && isNaN(telnum)) {
+            errors.telnum = "Tel number only contains digits";
         } else errors.telnum = '';
 
-        if (!this.state.touched.query || (query.split(/[\s,]+/).filter(x => (x === 'Jalan' || x === 'Lorong')).length !== 1 ||
+        if (this.state.touched.query && (query.split(/[\s,]+/).filter(x => (x === 'Jalan' || x === 'Lorong')).length !== 1 ||
             query.split(/[\s,]+/).filter(x => (x === 'Taman')).length !== 1 ||
             query.split(/[\s,]+/).filter(x => x.match(/\b\d{5}\b/g)).length !== 1))
             errors.query = "Living Address should contain Jalan, Taman and Poscode(5 digit)";
         else errors.query = '';
 
+        if(birthdate.length === 0){
+            errors.birthdate = "Please input valid format"
+        }
+        if(telnum.length === 0){
+            errors.telnum = "Please input valid tel num format";
+        }
+        if(query.length === 0){
+            errors.query = "Username must have at least 5 characters"
+        }
         return errors;
     }
 
@@ -152,7 +171,7 @@ class Register extends Component {
                         </FormGroup>
 
                         <FormGroup row>
-                            <Label htmlFor="birthdate" md={3}>Birthdate</Label>
+                            <Label htmlFor="birthdate" md={3}>Birthdate(E.g. 01/03/2000)</Label>
                             <Col md={8}>
                                 <Input type="text" id="birthdate" name="birthdate"
                                     placeholder="DD/MM/YYYY"
@@ -180,7 +199,7 @@ class Register extends Component {
                         </FormGroup>
 
                         {console.log(errors.query)}
-                        
+
                         <FormGroup row>
                             <Label htmlFor="livingAddress" md={3}>Living Address</Label>
                             <Col md={8}>
@@ -210,7 +229,7 @@ class Register extends Component {
                                     <option>Futsal</option>
                                     <option>Table Tennis</option>
                                     <option>E-sports</option>
-                                    <option>Not in the list</option>
+                                    {/* <option>Not in the list</option> */}
                                 </Input>
                             </Col>
                         </FormGroup>
@@ -227,7 +246,7 @@ class Register extends Component {
                                     <option>Dance/Electronic/House</option>
                                     <option>Soundtracks</option>
                                     <option>Hip-Hop/Rap/Trap</option>
-                                    <option>Not in the list</option>
+                                    {/* <option>Not in the list</option> */}
 
                                 </Input>
                             </Col>
@@ -245,7 +264,7 @@ class Register extends Component {
                                     <option>Ramen</option>
                                     <option>Kimchi</option>
                                     <option>Ice cream</option>
-                                    <option>Not in the list</option>
+                                    {/* <option>Not in the list</option> */}
                                 </Input>
                             </Col>
                         </FormGroup>
@@ -262,7 +281,7 @@ class Register extends Component {
                                     <option>Horror</option>
                                     <option>Romance</option>
                                     <option>Sci-fi</option>
-                                    <option>Not in the list</option>
+                                    {/* <option>Not in the list</option> */}
                                 </Input>
                             </Col>
                         </FormGroup>
@@ -279,7 +298,7 @@ class Register extends Component {
                                     <option>Crime</option>
                                     <option>Horror</option>
                                     <option>Romance</option>
-                                    <option>Not in the list</option>
+                                    {/* <option>Not in the list</option> */}
                                 </Input>
                             </Col>
                         </FormGroup>
@@ -287,10 +306,11 @@ class Register extends Component {
                         <FormGroup row className='col-12'>
                             <Col md={{ size: 10, offset: 2 }}>
                                 <Link to="/find">
-                                    <Button type="submit" color="primary" 
-                                    onClick={()=>{this.handleSubmit();
-                                    // this.validate(this.state.birthdate, this.state.telnum, this.state.query);
-                                    }}>
+                                    <Button type="submit" color="primary"
+                                        onClick={() => {
+                                            this.handleSubmit();
+                                            // this.validate(this.state.birthdate, this.state.telnum, this.state.query);
+                                        }}>
                                         Let's Start
                                     </Button>
                                 </Link>
