@@ -75,8 +75,8 @@ class Main extends Component {
               <Route exact path="/login" component={LoginPage} />
               <Route exact path="/signup" component={SignUp} />
               <Route exact path="/signupdetails" component={SignUpDetails} />
-              <Route exact path="/tantanregister" component={TantanSignUpDetails} />
-              <Route exact path="/tinderregister" component={TinderSignUpDetails} />
+              <Route exact path="/tantansignup" component={TantanSignUpDetails} />
+              <Route exact path="/tindersignup" component={TinderSignUpDetails} />
 
               <Route path="/find" component={() => <SearchArea minDist={this.state.minDist} handleInputChange={this.handleInputChange}/>} />
               {/* <Route exact path="/chat" component={ChatPage} />

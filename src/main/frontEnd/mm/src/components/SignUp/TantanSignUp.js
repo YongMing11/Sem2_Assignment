@@ -174,7 +174,7 @@ class TantanSignUp extends Component {
                                         valid={errors.email === ''}
                                         invalid={errors.email !== ''}
                                         onBlur={this.handleBlur('email')}
-                                        onChange={this.handleInputChange} >
+                                        onChange={(event)=>{this.handleInputChange(event);}} >
                                     </Input>
                                     <FormFeedback>{errors.email}</FormFeedback>
                                 </FormGroup>
@@ -191,7 +191,9 @@ class TantanSignUp extends Component {
                                     <FormFeedback>{errors.password}</FormFeedback>
                                 </FormGroup>
 
-                                <Interests />
+                                <Interests handleInputChange={(event)=>{
+                                    this.handleInputChange(event);
+                                    }}/>
 
                                 <div className="col-12 d-flex flex-row justify-content-center">
                                     <Link to="/find">

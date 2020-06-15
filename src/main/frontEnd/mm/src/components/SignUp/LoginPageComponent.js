@@ -114,13 +114,13 @@ class Login extends Component {
           </div>
 
           <div className="col-12 d-flex flex-row justify-content-center w-100">
-              <Link to="/tantanregister" className="w-100">
+              <Link to="/tantansignup" className="w-100">
                 <button className="tantan" type="text" >
                 </button>
               </Link>
             {/* <div> */}
-              <Link to="/login" className="w-100">
-                <button className="tinder" type="text" onClick={() => {postTinder(Tinder)}}>
+              <Link to="/tindersignup" className="w-100">
+                <button className="tinder" type="text">
                 </button>
               </Link>
             {/* </div> */}

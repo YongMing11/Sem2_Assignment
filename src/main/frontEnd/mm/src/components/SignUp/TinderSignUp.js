@@ -21,12 +21,13 @@ class TinderSignUp extends Component {
             food: '',
             movie: '',
             book: '',
-            query:'',
+            query: '',
             latitude: '',
             longitude: '',
             touched: {
                 email: false,
                 password: false,
+                query:false
             }
         };
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -52,7 +53,7 @@ class TinderSignUp extends Component {
             [name]: value
         });
     }
-    codeAddress = (address,user) => {
+    codeAddress = (address) => {
         const age = 2020 - Number(this.state.user.userProfile.birthDate.substring(6));
         Geocode.setApiKey("AIzaSyAksVZB4RHHEdtF96HB4qpKHRVGWKdFlIo");
         Geocode.setLanguage("en");
@@ -60,12 +61,12 @@ class TinderSignUp extends Component {
             response => {
                 const { lat, lng } = response.results[0].geometry.location;
                 console.log(`Based on the address, this is the coordinate: lat = ${lat} long = ${lng}`);
-                user = {
+                const user = {
                     "userProfile": {
                         ...this.state.user.userProfile,
                         "username": this.state.username,
                         "age": age,
-                        "address":this.state.query,
+                        "address": this.state.query,
                         "interests": {
                             "sport": this.state.sport,
                             "music": this.state.music,
@@ -84,12 +85,12 @@ class TinderSignUp extends Component {
                         "lon": lng
                     }
                 }
-                console.log("before post register");
+                console.log("post below data to /register");
                 console.log(user);
                 postRegister(user).then(responseData => {
                     console.log("Registration successfully: " + responseData);
                     if (responseData !== true) {
-                        console.log("response Data is false in postRegister");
+                        console.log("Email or username has been used by other user");
                     }
                 });
             },
@@ -100,41 +101,7 @@ class TinderSignUp extends Component {
     }
 
     handleSubmit(event) {
-        
-        const user = '';
-        this.codeAddress(this.state.query, user);
-        // user = {
-        //     "userProfile": {
-        //         ...this.state.user.userProfile,
-        //         "username": this.state.username,
-        //         "age": age,
-        //         "address":this.state.query,
-        //         "interests": {
-        //             "sport": this.state.sport,
-        //             "music": this.state.music,
-        //             "food": this.state.food,
-        //             "movie": this.state.movie,
-        //             "book": this.state.book
-        //         }
-        //     },
-        //     "loginCredentials": {
-        //         "username": this.state.username,
-        //         "email": this.state.email,
-        //         "password": this.state.password
-        //     },
-        //     "coordinate": {
-        //         "lat": this.state.latitude,
-        //         "lon": this.state.longitude
-        //     }
-        // }
-        // console.log("below is before post register");
-        // console.log(user);
-        // postRegister(user).then(responseData => {
-        //     console.log("Registration successfully: " + responseData);
-        //     if (responseData !== true) {
-        //         event.preventDefault();
-        //     }
-        // });
+        this.codeAddress(this.state.query);
     }
 
     handleBlur = (field) => (evt) => {
@@ -143,52 +110,52 @@ class TinderSignUp extends Component {
         });
     }
 
-    validate(username, email, password,query) {
+    validate(username, email, password, query) {
         const errors = {
             username: '',
             email: '',
             password: '',
-            query:''
+            query: ''
         }
-        // if (this.state.touched.username && username.length < 5) {
-        //     errors.username = "Username must have at least 5 characters"
-        // }
-        // const emailRegex = /^\w+@\w+[.]\w+$/;
-        // if (this.state.touched.email && !emailRegex.test(email))
-        //     errors.email = "Please input valid email format";
-        // else {
-        //     errors.email = '';
-        // }
+        if (this.state.touched.username && username.length < 5) {
+            errors.username = "Username must have at least 5 characters"
+        }
+        const emailRegex = /^\w+@\w+[.]\w+$/;
+        if (this.state.touched.email && !emailRegex.test(email))
+            errors.email = "Please input valid email format";
+        else {
+            errors.email = '';
+        }
 
-        // if (this.state.touched.password && (password.length < 6 || password.length > 10))
-        //     errors.password = "Password length should be in the range of 6-10"
-        // else {
-        //     errors.password = '';
-        // }
-        // if (username.length === 0) {
-        //     errors.username = "Password length should be in the range of 6-10"
-        // }
-        // if (password.length === 0) {
-        //     errors.password = "Password length should be in the range of 6-10"
-        // }
-        // if (email.length === 0) {
-        //     errors.email = "Please input valid email format";
-        // }
-        // if (this.state.touched.query && (query.split(/[\s,]+/).filter(x => (x === 'Jalan' || x === 'Lorong')).length !== 1 ||
-        //     query.split(/[\s,]+/).filter(x => (x === 'Taman')).length !== 1 ||
-        //     query.split(/[\s,]+/).filter(x => x.match(/\b\d{5}\b/g)).length !== 1))
-        //     errors.query = "Living Address should contain Jalan, Taman and Poscode(5 digit)";
-        // else errors.query = '';
+        if (this.state.touched.password && (password.length < 6 || password.length > 10))
+            errors.password = "Password length should be in the range of 6-10"
+        else {
+            errors.password = '';
+        }
+        if (username.length === 0) {
+            errors.username = "Password length should be in the range of 6-10"
+        }
+        if (password.length === 0) {
+            errors.password = "Password length should be in the range of 6-10"
+        }
+        if (email.length === 0) {
+            errors.email = "Please input valid email format";
+        }
+        if (this.state.touched.query && (query.split(/[\s,]+/).filter(x => (x === 'Jalan' || x === 'Lorong')).length !== 1 ||
+            query.split(/[\s,]+/).filter(x => (x === 'Taman')).length !== 1 ||
+            query.split(/[\s,]+/).filter(x => x.match(/\b\d{5}\b/g)).length !== 1))
+            errors.query = "Living Address should contain Jalan, Taman and Poscode(5 digit)";
+        else errors.query = '';
 
-        // if (query.length === 0) {
-        //     errors.query = "Living Address should contain Jalan, Taman and Poscode(5 digit)"
-        // }
+        if (query.length === 0) {
+            errors.query = "Living Address should contain Jalan, Taman and Poscode(5 digit)"
+        }
         return errors;
     }
 
     render() {
         if (this.state.user) {
-            const errors = this.validate(this.state.username, this.state.email, this.state.password);
+            const errors = this.validate(this.state.username, this.state.email, this.state.password, this.state.query);
             return (
                 <div className="container">
                     <div className="row light-orange">
@@ -249,7 +216,9 @@ class TinderSignUp extends Component {
                                     </Col>
                                 </FormGroup>
 
-                                <Interests />
+                                <Interests handleInputChange={(event)=>{
+                                    this.handleInputChange(event);
+                                    }}/>
 
                                 <div className="col-12 d-flex flex-row justify-content-center">
                                     <Link to="/find">
