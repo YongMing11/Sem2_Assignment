@@ -12,19 +12,10 @@ class SignUp extends Component {
             username: '',
             email: '',
             password: '',
-            gender: '',
-            telnum: '',
-            livingAddress: '',
-            sports: '',
-            music: '',
-            food: '',
             touched: {
                 username: false,
                 email: false,
                 password: false,
-                gender: false,
-                telnum: false,
-                livingAddress: false
             }
         };
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -147,12 +138,12 @@ class SignUp extends Component {
                                 <FormFeedback>{errors.password}</FormFeedback>
                             </FormGroup>
                             <div className="col-12 d-flex flex-row justify-content-center">
-                                <Link to="/signup/register">
+                                <Link to="/signupdetails">
                                     <button type="sign up" id="signUp" className="bg-warning" 
                                     onClick={() => {
                                         this.handleSubmit();
                                         // this.validateIfEmpty(errors,this.state.username,this.state.email,this.state.password);
-                                        }}>Sign Up</button>
+                                        }}>Fill in Details</button>
                                 </Link>
                             </div>
                         </Form>

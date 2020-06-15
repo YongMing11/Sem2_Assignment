@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Form, Input, FormFeedback, FormGroup, Button } from 'reactstrap';
-// import history from "./History";
+import { Tantan, Tinder } from '../../shared/user';
+import { postTantan, postTinder } from '../../HTTPRequest';
 
 class Login extends Component {
   constructor(props) {
@@ -112,9 +113,17 @@ class Login extends Component {
             <p className="message" > ------ or connect with------ </p>
           </div>
 
-          <div className="col-12 d-flex">
-            <button className="tantan" type="text" id="tantan" href="https://tantanapp.com/en" />
-            <button className="tinder" type="text" id="tinder" href="https://tinder.com/" />
+          <div className="col-12 d-flex flex-row justify-content-center w-100">
+              <Link to="/tantanregister" className="w-100">
+                <button className="tantan" type="text" >
+                </button>
+              </Link>
+            {/* <div> */}
+              <Link to="/login" className="w-100">
+                <button className="tinder" type="text" onClick={() => {postTinder(Tinder)}}>
+                </button>
+              </Link>
+            {/* </div> */}
           </div>
         </div>
       </div>

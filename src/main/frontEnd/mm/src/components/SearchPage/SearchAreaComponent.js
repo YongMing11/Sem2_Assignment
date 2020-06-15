@@ -10,6 +10,11 @@ class SearchArea extends Component {
     super(props);
     this.state = {
     };
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleInputChange(e){
+    this.props.handleInputChange(e);
   }
 
   render() {
@@ -32,7 +37,7 @@ class SearchArea extends Component {
                 <div className="col-1 pr-0 py-3 d-flex flex-row-reverse"><span>0</span></div>
 
                 <div className="col-10 py-3">
-                  <CustomInput step={10} type="range" id="minDist" name="minDist" value={this.props.minDist} onChange={this.props.handleInputChange}>
+                  <CustomInput step={10} type="range" id="minDist" name="minDist" value={this.props.minDist} onChange={this.handleInputChange}>
                   </CustomInput>
                 </div>
 

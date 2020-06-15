@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import OneCard from './OneCard';
 import { getSearchResult } from '../../../HTTPRequest';
+import BottomNav from '../../BottomNavComponent';
 
 class ResultPage extends Component {
 
@@ -12,7 +13,7 @@ class ResultPage extends Component {
   }
 
   componentDidMount() {
-    getSearchResult(this.props.minDist).then(response => {
+    getSearchResult(this.props.minDist, "Both").then(response => {
       this.setState({
         results: response
       });
@@ -26,16 +27,32 @@ class ResultPage extends Component {
         return <div className="col mb-4" key={result.username}><OneCard name={result.username} distance={result.distance} match={result.match} /></div>;
       });
       return (
-        <div className="row row-cols-2 row-cols-md-5 py-4 bg-dark">
-          {cards}
-        </div>
+        <>
+          <div className="row row-cols-2 row-cols-md-5 py-4 bg-dark">
+            {cards}
+          </div>
+          <div className="row fixed-bottom-height bg-dark"></div>
+          <div className={"row fixed-bottom"}>
+            <div className="col-12 m-0">
+              <BottomNav />
+            </div>
+          </div>
+        </>
       );
     } else {
 
       return (
-        <div className="row row-cols-2 row-cols-md-5 py-4 bg-dark">
-          {/* <div className="light-orange">No result</div> */}
-        </div>
+        <>
+          <div className="row row-cols-2 row-cols-md-5 py-4 bg-dark">
+            {/* <div className="light-orange">No result</div> */}
+          </div>
+          <div className="row fixed-bottom-height bg-dark"></div>
+          <div className={"row fixed-bottom"}>
+            <div className="col-12 m-0">
+              <BottomNav />
+            </div>
+          </div>
+        </>
       );
     }
   }

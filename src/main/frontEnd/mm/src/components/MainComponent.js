@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import Header from './HeaderComponent';
 import { Switch, Route, Redirect, Link } from 'react-router-dom';
-import MainChatPage from './Chat/MainChatPage';
-import ChatRoom from './Chat/MainChatRoom';
+// import MainChatPage from './Chat/MainChatPage';
+// import ChatRoom from './Chat/MainChatRoom';
 import Profile from './ProfilePage/MainProfilePage';
 import SearchArea from './SearchPage/SearchAreaComponent';
 import ResultPage from './SearchPage/SearchResultPage/Main';
-// import LoginPage from './SignUp/LoginPageComponent';
-// import SignUp from './SignUp/SignUpComponent';
-// import Register from './SignUp/RegisterComponent';
-import { USERS } from '../shared/user';
+import LoginPage from './SignUp/LoginPageComponent';
+import SignUp from './SignUp/SignUpComponent';
+import SignUpDetails from './SignUp/SignUpDetailsComponent';
 import { getProfile, getSearchResult } from '../HTTPRequest';
+import TantanSignUpDetails from './SignUp/TantanSignUp';
+import TinderSignUpDetails from './SignUp/TinderSignUp';
 
 class Main extends Component {
 
@@ -50,17 +51,17 @@ class Main extends Component {
         );
     }
 
-    const ChatPage = () => {
-      return (
-        <MainChatPage user={this.state.user!==""?this.state.user:""} />
-      );
-    }
+    // const ChatPage = () => {
+    //   return (
+    //     <MainChatPage user={this.state.user!==""?this.state.user:""} />
+    //   );
+    // }
 
-    const ChatRoomPage = ({ match }) => {
-      return (
-        <ChatRoom uid={this.state.user.uid} friendUid={match.params.uid} />
-      );
-    }
+    // const ChatRoomPage = ({ match }) => {
+    //   return (
+    //     <ChatRoom uid={this.state.user.uid} friendUid={match.params.uid} />
+    //   );
+    // }
 
     return (
       <div className="container-fluid d-flex flex-column flex-start brown h-100">
@@ -71,9 +72,11 @@ class Main extends Component {
         <div className="row bg-dark h-100">
           <div className="col-12 p-0">
             <Switch>
-              {/* <Route exact path="/login" component={LoginPage} /> */}
-              {/* <Route exact path="/signup" exact component={SignUp} /> */}
-              {/* <Route path="/signup/register" component={Register} /> */}
+              <Route exact path="/login" component={LoginPage} />
+              <Route exact path="/signup" component={SignUp} />
+              <Route exact path="/signupdetails" component={SignUpDetails} />
+              <Route exact path="/tantanregister" component={TantanSignUpDetails} />
+              <Route exact path="/tinderregister" component={TinderSignUpDetails} />
 
               <Route path="/find" component={() => <SearchArea minDist={this.state.minDist} handleInputChange={this.handleInputChange}/>} />
               {/* <Route exact path="/chat" component={ChatPage} />
@@ -83,17 +86,10 @@ class Main extends Component {
               {/* below are subpages */}
               <Route path="/result" component={() => <ResultPage minDist={this.state.minDist}/>} />
               {/* 404 should put here */}
-              <Redirect to="/profile" />
+              <Redirect to="/login" />
             </Switch>
           </div>
         </div>
-
-        {/* <div className={this.state.isNavShown?"row":"hidden"}> */}
-        {/* <div className={"row fixed-bottom"}>
-          <div className="col-12 m-0">
-            <BottomNav />
-          </div>
-        </div> */}
       </div>
     );
   }

@@ -4,6 +4,17 @@ import { CHATS } from '../../shared/chats';
 
 class ChatRoomBody extends Component {
 
+  constructor(props){
+    super(props);
+    this.state = {
+      msg : CHATS.filter((user) => {
+        return user.uid === this.props.uid
+      })[0].withUser.filter((friend) => {
+        return friend.uid === parseInt(this.props.friendUid, 10);
+      })[0].msg
+    }
+  }
+
   render() {
 
     const AllMsgWithId = ({ msg }) => {
@@ -34,17 +45,13 @@ class ChatRoomBody extends Component {
       );
     }
 
-    const msg = CHATS.filter((user) => {
-      return user.uid === this.props.uid
-    })[0].withUser.filter((friend) => {
-      return friend.uid === parseInt(this.props.friendUid, 10);
-    })[0].msg;
+    
 
     return (
       <>
         <div className="row bg-dark">
           <div className="container-fluid">
-            <AllMsgWithId msg={msg} className="chatMsg"/>
+            <AllMsgWithId msg={this.state.msg} className="chatMsg"/>
           </div>
         </div>
         <div className="row fixed-bottom-height bg-dark"></div>

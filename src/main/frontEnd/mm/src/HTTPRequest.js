@@ -34,17 +34,38 @@ const getSearchResult = (dist, gender) => {
   return sendHttpRequest('GET', url + port + `search/dad?dist=${dist}&gender=${gender}`);
 };
 
-// const sendData = () => {
-//   sendHttpRequest('POST', 'https://reqres.in/api/register', {
-//     email: 'eve.holt@reqres.in',
-//     // password: 'pistol'
-//   }).then(responseData => {
-//     console.log(responseData);
-//   }).catch(err => {
-//     console.log(err)
-//   });
-// };
-export { getSearchResult, getProfile };
+const postRegister = (data) => {
+  return sendHttpRequest('POST', url + port + 'register', data
+  ).catch(err => {
+    console.log(err)
+  });
+};
+
+const getTantan = () => {
+  return sendHttpRequest('GET', url + port + 'adapter/tantan');
+}
+const getTinder = () => {
+  return sendHttpRequest('GET', url + port + 'adapter/tinder'
+  ).then(responseData => {
+    console.log(responseData);
+  });
+}
+const postTantan = (data) => {
+  console.log("in post tantan");
+  return sendHttpRequest('POST', url + port + 'adapter/tantan', data
+  ).catch(err => {
+    console.log(err)
+  });
+}
+const postTinder = (data) => {
+  console.log("in post tinder");
+  return sendHttpRequest('POST', url + port + 'adapter/tinder', data
+  ).catch(err => {
+    console.log(err)
+  });
+}
+
+export { getSearchResult, getProfile, postRegister, getTantan, getTinder, postTantan, postTinder};
 // const sendHttpRequest = (method, url, data) => {
 //   const xhr = new XMLHttpRequest();
 //   xhr.open(method, url);

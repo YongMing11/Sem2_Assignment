@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Card, CardImg, Form, FormGroup, FormFeedback, Col, Input, Label, Button } from 'reactstrap';
 import * as opencage from 'opencage-api-client';
 import { Link } from 'react-router-dom';
+import Interests from '../SignUp/Interests';
 
-
-class Register extends Component {
+class SignUpDetails extends Component {
     constructor(props) {
         super(props);
 
@@ -13,11 +13,6 @@ class Register extends Component {
             gender: '',
             birthdate: '',
             telnum: '',
-            sport: '',
-            music: '',
-            food: '',
-            movie: '',
-            book: '',
             query: '',
             apikey: '99f8f42735854ae7bff77ad5fe37d8ef',
             latitude: '',
@@ -30,21 +25,21 @@ class Register extends Component {
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.displayPicture = this.displayPicture.bind(this);
+        // this.displayPicture = this.displayPicture.bind(this);
         this.handleCoordinate = this.handleCoordinate.bind(this);
     }
 
-    displayPicture(e) {
-        const reader = new FileReader();
-        reader.onload = () => {
-            if (reader.readyState === 2) {
-                this.setState(
-                    { picture: reader.result }
-                );
-            }
-        }
-        reader.readAsDataURL(e.target.files[0]);
-    }
+    // displayPicture(e) {
+    //     const reader = new FileReader();
+    //     reader.onload = () => {
+    //         if (reader.readyState === 2) {
+    //             this.setState(
+    //                 { picture: reader.result }
+    //             );
+    //         }
+    //     }
+    //     reader.readAsDataURL(e.target.files[0]);
+    // }
 
     handleCoordinate(event) {
         // event.preventDefault();
@@ -97,17 +92,17 @@ class Register extends Component {
             query: ''
         }
         console.log(this.state.touched.birthdate + " here");
-        const birthdateRegex = /^(0?[1-9]|[12][0-9]|3[01])\/(0?[1-9]|1[012])\/\d{4}$/;
+        const birthdateRegex = /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[012])\/\d{4}$/;
         function isDateBeforeToday(date) {
             return new Date(date.toDateString()) < new Date(new Date().toDateString());
         }
-        const day = Number(birthdate.substring(0,2));
-        const month =Number(birthdate.substring(3,5));
+        const day = Number(birthdate.substring(0, 2));
+        const month = Number(birthdate.substring(3, 5));
         const year = Number(birthdate.substring(6));
         const beforeToday = isDateBeforeToday(new Date(year, month, day));
         if (this.state.touched.birthdate && birthdateRegex.test(birthdate)) {
             errors.birthdate = "Invalid format";
-        }else if(beforeToday){
+        } else if (beforeToday) {
             errors.birthdate = 'The date must before today';
         } else errors.birthdate = '';
 
@@ -121,14 +116,14 @@ class Register extends Component {
             errors.query = "Living Address should contain Jalan, Taman and Poscode(5 digit)";
         else errors.query = '';
 
-        if(birthdate.length === 0){
+        if (birthdate.length === 0) {
             errors.birthdate = "Please input valid format"
         }
-        if(telnum.length === 0){
+        if (telnum.length === 0) {
             errors.telnum = "Please input valid tel num format";
         }
-        if(query.length === 0){
-            errors.query = "Username must have at least 5 characters"
+        if (query.length === 0) {
+            errors.query = "Living Address should contain Jalan, Taman and Poscode(5 digit)"
         }
         return errors;
     }
@@ -145,7 +140,7 @@ class Register extends Component {
 
                     <Form>
 
-                        <FormGroup row>
+                        {/* <FormGroup row>
                             <Label htmlFor="picture" md={3}>Profile Picture</Label>
                             <Col md={{ size: 3 }}>
                                 <Card id="img-holder">
@@ -156,7 +151,7 @@ class Register extends Component {
                                     onChange={this.displayPicture}>
                                 </Input>
                             </Col>
-                        </FormGroup>
+                        </FormGroup> */}
 
                         <FormGroup row>
                             <Label htmlFor="gender" md={3}>Gender</Label>
@@ -210,98 +205,13 @@ class Register extends Component {
                                     valid={errors.query === ''}
                                     invalid={errors.query !== ''}
                                     onBlur={this.handleBlur('query')}
-                                    onChange={this.handleInputChange}></Input>
-
+                                    onChange={this.handleInputChange}>
+                                </Input>
                                 <FormFeedback>{errors.query}</FormFeedback>
                             </Col>
                         </FormGroup>
 
-                        <FormGroup row>
-                            <Label htmlFor="interest" md={3}>Interests</Label>
-                            <Col md={{ size: 5 }}>
-                                <Input type="select" name="sport"
-                                    value={this.state.sport}
-                                    onChange={this.handleInputChange}>
-                                    <option>--No Fav Sport--</option>
-                                    <option>Basketball</option>
-                                    <option>Volleyball</option>
-                                    <option>Jogging</option>
-                                    <option>Futsal</option>
-                                    <option>Table Tennis</option>
-                                    <option>E-sports</option>
-                                    {/* <option>Not in the list</option> */}
-                                </Input>
-                            </Col>
-                        </FormGroup>
-
-                        <FormGroup row>
-                            <Col md={{ size: 5, offset: 3 }}>
-                                <Input type="select" name="music"
-                                    value={this.state.music}
-                                    onChange={this.handleInputChange}>
-                                    <option>--No Fav Music--</option>
-                                    <option>Alternative</option>
-                                    <option>Pop</option>
-                                    <option>Rock</option>
-                                    <option>Dance/Electronic/House</option>
-                                    <option>Soundtracks</option>
-                                    <option>Hip-Hop/Rap/Trap</option>
-                                    {/* <option>Not in the list</option> */}
-
-                                </Input>
-                            </Col>
-                        </FormGroup>
-
-                        <FormGroup row>
-                            <Col md={{ size: 5, offset: 3 }}>
-                                <Input type="select" name="food"
-                                    value={this.props.food}
-                                    onChange={this.handleInputChange}>
-                                    <option>--No Fav Food--</option>
-                                    <option>Rendang</option>
-                                    <option>Sushi</option>
-                                    <option>Dim sum</option>
-                                    <option>Ramen</option>
-                                    <option>Kimchi</option>
-                                    <option>Ice cream</option>
-                                    {/* <option>Not in the list</option> */}
-                                </Input>
-                            </Col>
-                        </FormGroup>
-
-                        <FormGroup row>
-                            <Col md={{ size: 5, offset: 3 }}>
-                                <Input type="select" name="movie"
-                                    value={this.state.movie}
-                                    onChange={this.handleInputChange}>
-                                    <option>--No Fav Movie--</option>
-                                    <option>Action</option>
-                                    <option>Comedy</option>
-                                    <option>Crime</option>
-                                    <option>Horror</option>
-                                    <option>Romance</option>
-                                    <option>Sci-fi</option>
-                                    {/* <option>Not in the list</option> */}
-                                </Input>
-                            </Col>
-                        </FormGroup>
-
-                        <FormGroup row>
-                            <Col md={{ size: 5, offset: 3 }}>
-                                <Input type="select" name="book"
-                                    value={this.state.book}
-                                    onChange={this.handleInputChange}>
-                                    <option>--No Fav Book--</option>
-                                    <option>Adventure</option>
-                                    <option>Biography</option>
-                                    <option>Classics</option>
-                                    <option>Crime</option>
-                                    <option>Horror</option>
-                                    <option>Romance</option>
-                                    {/* <option>Not in the list</option> */}
-                                </Input>
-                            </Col>
-                        </FormGroup>
+                        <Interests />
 
                         <FormGroup row className='col-12'>
                             <Col md={{ size: 10, offset: 2 }}>
@@ -324,4 +234,4 @@ class Register extends Component {
     }
 }
 
-export default Register;
+export default SignUpDetails;
