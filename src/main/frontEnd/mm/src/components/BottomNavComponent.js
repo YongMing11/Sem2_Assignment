@@ -9,20 +9,20 @@ class BottomNav extends Component {
         <div className="container-fluid">
           <Nav className="text-center">
             <div className="container-fluid p-0">
-              <div className="row orange text-black">
-                <div className="col-4 border text-center">
+              <div className="row orange">
+                <div className="col-4 border text-center ">
                   <NavItem>
-                    <NavLink href="/find">Find</NavLink>
+                    <NavLink href="/find" className="text-light">Find</NavLink>
                   </NavItem>
                 </div>
                 <div className="col-4 border text-center">
                   <NavItem>
-                    <NavLink href="/chat">Chat</NavLink>
+                    <NavLink href="/chat" className="text-light">Chat</NavLink>
                   </NavItem>
                 </div>
                 <div className="col-4 border text-center">
                   <NavItem>
-                    <NavLink href="/profile">Profile</NavLink>
+                    <NavLink href="/profile" className="text-light">Profile</NavLink>
                   </NavItem>
                 </div>
               </div>

@@ -5,10 +5,10 @@ class ProfileHeader extends Component {
     return (
       <div className="row light-orange">
         <div className="col-12 py-3 d-flex justify-content-center">
-          <img src={this.props.img} alt="Generic placeholder image" className="round-image" />
+          {/* <img src={this.props.img} alt="Generic placeholder" className="round-image" /> */}
         </div>
         <div className="col-12 d-flex justify-content-center">
-          <h3>{this.props.name}</h3>
+          <h2>{this.props.name}</h2>
         </div>
       </div>
     );

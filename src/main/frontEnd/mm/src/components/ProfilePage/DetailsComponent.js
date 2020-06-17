@@ -11,7 +11,7 @@ class Info extends Component {
     } else {
       return (
         <>
-          <div className="row orange">
+          <div className="row basic-info">
             <div className="col-12 pt-2 d-flex justify-content-between">
               <h4>Basic Info</h4>
             </div>

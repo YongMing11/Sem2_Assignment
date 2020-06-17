@@ -4,54 +4,46 @@ import { CHATS } from '../../shared/chats';
 
 class ChatRoomBody extends Component {
 
-  constructor(props){
-    super(props);
-    this.state = {
-      msg : CHATS.filter((user) => {
-        return user.uid === this.props.uid
-      })[0].withUser.filter((friend) => {
-        return friend.uid === parseInt(this.props.friendUid, 10);
-      })[0].msg
-    }
-  }
-
   render() {
-
-    const AllMsgWithId = ({ msg }) => {
-      return (
-        msg.map((oneMsg) => {
-          if (oneMsg.byMe) {
-            return <div key={oneMsg.id} className="row">
-              <div className="offset-3 col-9">
-                <Card className="m-1">
-                  <CardBody>
-                    <CardText>{oneMsg.msgText}</CardText>
-                  </CardBody>
-                </Card>
-              </div>
-            </div>;
-          } else {
-            return <div key={oneMsg.id} className="row">
-              <div className="col-9">
-                <Card className="m-1">
-                  <CardBody>
-                    <CardText>{oneMsg.msgText}</CardText>
-                  </CardBody>
-                </Card>
-              </div>
-            </div>;
-          }
-        })
-      );
+    const { msg } = this.props;
+    console.log(Array.isArray(msg));
+    const AllMsgWithId = ({msg}) => {
+      if(msg){
+        return (
+          msg.slice(0).reverse().map((oneMsg) => {
+            if (oneMsg.byMe) {
+              return <div key={oneMsg.timestamp} className="row">
+                <div className="offset-3 col-9">
+                  <Card className="m-1">
+                    <CardBody>
+                      <CardText>{oneMsg.msgText}</CardText>
+                    </CardBody>
+                  </Card>
+                </div>
+              </div>;
+            } else {
+              return <div key={oneMsg.timestamp} className="row">
+                <div className="col-9">
+                  <Card className="m-1">
+                    <CardBody>
+                      <CardText>{oneMsg.msgText}</CardText>
+                    </CardBody>
+                  </Card>
+                </div>
+              </div>;
+            }
+          })
+        );
+      }else{
+        return (<></>);
+      }
     }
-
-    
 
     return (
       <>
         <div className="row bg-dark">
           <div className="container-fluid">
-            <AllMsgWithId msg={this.state.msg} className="chatMsg"/>
+            <AllMsgWithId msg={msg} className="chatMsg"/>
           </div>
         </div>
         <div className="row fixed-bottom-height bg-dark"></div>

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 // import history from './History';
 import { Form, Input, FormFeedback, FormGroup, Label, Col } from 'reactstrap';
-import { getTinder, postTinder, postRegister } from '../../HTTPRequest';
+import { postTinder, postRegister } from '../../HTTPRequest';
 import Interests from '../SignUp/Interests';
-import { Tantan, Tinder } from '../../shared/user';
+import { Tinder } from '../../shared/user';
 import Geocode from "react-geocode";
 
 class TinderSignUp extends Component {

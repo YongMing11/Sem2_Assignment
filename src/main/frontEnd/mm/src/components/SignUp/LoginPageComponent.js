@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Form, Input, FormFeedback, FormGroup, Button } from 'reactstrap';
-import { Tantan, Tinder } from '../../shared/user';
-import { postTantan, postTinder } from '../../HTTPRequest';
+import { login } from '../../HTTPRequest';
 
 class Login extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      email: '',
+      emailOrusername: '',
       password: '',
       touched: {
         email: false,
@@ -32,10 +31,19 @@ class Login extends Component {
   }
 
   handleSubmit(event) {
-    alert("Welcome Back to MeowMeow World !\n" + JSON.stringify(this.state));
-    //call api and put a alert box to show the result
-    // history.push("/signup/register");
     event.preventDefault();
+    login(this.state.emailOrusername,this.state.password).then(responseData => {
+      console.log("This is what being responsed: " + responseData);
+      if(responseData){
+        console.log("push");
+        this.props.swapLoggedIn();
+        //here may pass username or email, and uuid
+        this.props.setUsername(this.state.emailOrusername,responseData);
+        this.props.history.push('/find');
+      }else{
+        alert("Wrong email, username or password.");
+      }
+    });
   }
 
   handleBlur = (field) => (evt) => {
@@ -49,35 +57,34 @@ class Login extends Component {
       email: '',
       password: ''
     }
-    const emailRegex = /\w+@\w+[.]\w+/;
-    if (this.state.touched.email && !emailRegex.test(email)) {
-      errors.email = "Email format invalid";
-    } else {
-      errors.email = '';
-    }
-
     if (this.state.touched.password && password.length === 0)
       errors.password = "Password length should be not be 0"
     else {
       errors.password = '';
     }
-
     return errors;
   }
 
   render() {
-    const errors = this.validate(this.state.email, this.state.password);
+    // console.log("The user is logged in: "+this.props.isLoggedIn);
+    if(this.props.isLoggedIn){
+      return (
+        <Redirect to="/find" />
+      );
+    }
+    const errors = this.validate(this.state.emailOrusername, this.state.password);
     return (
       <div className="container h-100">
         <div className="row light-orange h-100">
+
           <div className="col-12 p-3 py-5">
             <Form className="Login">
               <FormGroup>
                 <Input type="text" id="email" required
-                  placeholder="Email Address"
-                  name="email"
-                  value={this.state.email}
-                  valid={errors.email === ''}
+                  placeholder="Email Address/Username"
+                  name="emailOrusername"
+                  value={this.state.emailOrusername}
+                  // valid={errors.email === ''}
                   invalid={errors.email !== ''}
                   onBlur={this.handleBlur('email')}
                   onChange={this.handleInputChange} ></Input>
@@ -87,24 +94,27 @@ class Login extends Component {
                 <Input type="text" id="loginPassword" required placeholder="Password"
                   name="password"
                   value={this.state.password}
-                  valid={errors.password === ''}
+                  // valid={errors.password === ''}
                   invalid={errors.password !== ''}
                   onBlur={this.handleBlur('password')}
                   onChange={this.handleInputChange} ></Input>
                 <FormFeedback>{errors.password}</FormFeedback>
               </FormGroup>
+
               <div className="col-12 p-3 d-flex flex-row justify-content-center">
-                <button type="text" id="login" className="bg-warning" onClick={this.handleSubmit}>Log In</button>
+                <button type="text" className="bg-warning" onClick={this.handleSubmit}>Log In</button>
               </div>
+
             </Form>
           </div>
+
           <div className="col-12 text-center">
             <p className="message">Haven't Registered?</p>
           </div>
 
           <div className="col-12 pt-0 d-flex flex-row justify-content-center">
             <Link to='/signup'>
-              <button to="/signup" className="registerButton" type="text" id="register">Sign Up</button>
+              <Button to="/signup" className="registerButton" type="text">Sign Up</Button>
             </Link>
           </div>
 
@@ -114,16 +124,14 @@ class Login extends Component {
           </div>
 
           <div className="col-12 d-flex flex-row justify-content-center w-100">
-              <Link to="/tantansignup" className="w-100">
-                <button className="tantan" type="text" >
-                </button>
-              </Link>
-            {/* <div> */}
-              <Link to="/tindersignup" className="w-100">
-                <button className="tinder" type="text">
-                </button>
-              </Link>
-            {/* </div> */}
+            <Link to="/tantansignup" className="w-100">
+              <button className="tantan" type="text" >
+              </button>
+            </Link>
+            <Link to="/tindersignup" className="w-100">
+              <button className="tinder" type="text">
+              </button>
+            </Link>
           </div>
         </div>
       </div>

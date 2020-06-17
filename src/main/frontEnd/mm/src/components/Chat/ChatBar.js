@@ -1,38 +1,53 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, Label, Input, Button, Card, CardBody, CardText } from 'reactstrap';
+import { Button, Form, FormGroup, Input } from 'reactstrap';
 
 class ChatBar extends Component {
 
   constructor(props){
     super(props);
+    this.state = {
+      text:""
+    }
     this.addText = this.addText.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  addText(msg) {
-    const chatMsg = document.querySelector('.chatMsg');
-    chatMsg.innerHTML += (<div key={msg.id} className="row">
-      <div className="offset-3 col-9">
-        <Card className="m-1">
-          <CardBody>
-            <CardText>{msg.msgText}</CardText>
-          </CardBody>
-        </Card>
-      </div>
-    </div>);
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+    this.setState({
+      [name]: value
+    });
+  }
+
+  addText() {
+    //wait parent to pass sendMessage props
+    console.log("addText!");
+    this.props.sendMessage(`MSG ${this.props.friendUsername} `,this.state.text);
+    this.setState({
+      text:""
+    })
   }
 
   render() {
     return (
-      <div className="row align-items-center fixed-bottom orange p-2">
+      <div className="row align-items-center fixed-bottom-above orange p-2">
         <div className="offset-1 col-8">
           <Form>
             <FormGroup className="m-auto">
-              <Input type="email" name="email" id="text" placeholder="Write Message" />
+              <Input 
+                type="text" 
+                name="text" 
+                id="text" 
+                placeholder="Write Message" 
+                value={this.state.text} 
+                onChange={this.handleInputChange} />
             </FormGroup>
           </Form>
         </div>
         <div className="col-3">
-          <Button outline className="bg-light" onClick={this.addText}>
+          <Button outline type="submit" className="bg-light"  onClick={this.addText}>
             <span className="fa fa-send fa-lg rounded-circle"></span>
           </Button>
         </div>

@@ -2,22 +2,59 @@ import React, { Component } from 'react';
 import Header from './HeaderComponent';
 import Details from './DetailsComponent';
 import BottomNav from '../BottomNavComponent';
+import { Redirect, Link } from 'react-router-dom';
+import { getProfile } from '../../HTTPRequest';
 
 class ProfilePage extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: null
+    }
+  }
+
+  componentDidMount() {
+    getProfile(this.props.username).then(response => {
+      console.log(response);
+      this.setState({
+        user: response
+      });
+    });
+  }
+
   render() {
-    return (
-      <div className="container h-100">
-        <Header name={this.props.user.username} img={"Put the image from server here(probably is byte stream)"} />
-        <Details user={this.props.user} />
-        <div className="row fixed-bottom-height bg-dark"></div>
-        <div className={"row fixed-bottom"}>
-          <div className="col-12 m-0">
-            <BottomNav />
+
+    if (!this.props.isLoggedIn) {
+      return (
+        <Redirect to="/login" />
+      );
+    }
+    if (this.state.user) {
+
+      return (
+        <div className="container h-100">
+          <Header name={this.props.username} img={"Put the image from server here(probably is byte stream)"} />
+          <Details user={this.state.user} />
+          {/* <div className="row">
+          <Link to="/login" className="w-100">
+            <button className="logout" type="text">Log Out
+            </button>
+          </Link>
+        </div> */}
+          <div className="row fixed-bottom-height bg-dark"></div>
+          <div className={"row fixed-bottom"}>
+            <div className="col-12 m-0">
+              <BottomNav />
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }else{
+      return(
+        <></>
+      );
+    }
   }
 }
 

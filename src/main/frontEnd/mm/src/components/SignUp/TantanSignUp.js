@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 // import history from './History';
 import { Form, Input, FormFeedback, FormGroup } from 'reactstrap';
-import { getTantan, postTantan, postRegister } from '../../HTTPRequest';
+import { postTantan, postRegister } from '../../HTTPRequest';
 import Interests from '../SignUp/Interests';
-import { Tantan, Tinder } from '../../shared/user';
+import { Tantan } from '../../shared/user';
 import Geocode from "react-geocode";
 
 class TantanSignUp extends Component {

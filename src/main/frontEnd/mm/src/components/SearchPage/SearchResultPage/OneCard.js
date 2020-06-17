@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, CardBody, CardText, CardTitle, CardImg, Modal, ModalBody, ModalHeader, Button } from 'reactstrap';
+import { Card, CardBody, CardText, Modal, ModalBody, ModalHeader, Button } from 'reactstrap';
 import Details from '../../ProfilePage/DetailsComponent'
 import { getProfile } from '../../../HTTPRequest';
 

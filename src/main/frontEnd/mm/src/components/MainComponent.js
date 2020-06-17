@@ -1,68 +1,103 @@
 import React, { Component } from 'react';
 import Header from './HeaderComponent';
-import { Switch, Route, Redirect, Link } from 'react-router-dom';
-// import MainChatPage from './Chat/MainChatPage';
-// import ChatRoom from './Chat/MainChatRoom';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import MainChatPage from './Chat/MainChatPage';
+import ChatRoom from './Chat/MainChatRoom';
 import Profile from './ProfilePage/MainProfilePage';
-import SearchArea from './SearchPage/SearchAreaComponent';
-import ResultPage from './SearchPage/SearchResultPage/Main';
-import LoginPage from './SignUp/LoginPageComponent';
+import SearchAreaMain from './SearchPage/SearchResultPage/SearchAreaMain';
+import ResultPage from './SearchPage/SearchResultPage/SearchAreaMain';
+import Login from './SignUp/LoginPageComponent';
 import SignUp from './SignUp/SignUpComponent';
-import SignUpDetails from './SignUp/SignUpDetailsComponent';
-import { getProfile, getSearchResult } from '../HTTPRequest';
+import SignUpDetails from './SignUp/SignUpStep2';
+// import { getProfile } from '../HTTPRequest';
 import TantanSignUpDetails from './SignUp/TantanSignUp';
 import TinderSignUpDetails from './SignUp/TinderSignUp';
+import SignUpStep2 from './SignUp/SignUpStep2';
 
 class Main extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      user: "",
-      minDist: 50
+      username: "",
+      uuid: "",
+      isLoggedIn: false
     }
-    // this.getData = this.getData.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.swapLoggedIn = this.swapLoggedIn.bind(this);
+    this.setUsername = this.setUsername.bind(this);
   }
 
   handleInputChange(event) {
     const target = event.target;
-    const value = target.value;
+    const value = target.type === 'checkbox' ?
+      target.checked : target.value;
     const name = target.name;
-
+    console.log("Previous value: " + value);
     this.setState({
       [name]: value
     });
   }
 
-  componentDidMount() {
-    getProfile("meow").then(response => {
-      this.setState({
-        user:response
-      });
+  swapLoggedIn() {
+    this.setState({
+      isLoggedIn: !this.state.isLoggedIn
+    });
+  }
+
+  setUsername = (newUsername, uuid) => {
+    this.setState({
+      username: newUsername,
+      uuid:uuid
     });
   }
 
   render() {
     const ProfilePage = () => {
-      console.log(this.state.user);
+      console.log("this.state.user before render profile" + this.state.user);
       return (
-         <Profile user={this.state.user!==""?this.state.user:""} />
-        );
+        <Profile username={this.state.username} isLoggedIn={this.state.isLoggedIn} swapLoggedIn={this.swapLoggedIn} />
+      );
+    }
+    const LoginPage = () => {
+      return (
+        <Login username={this.state.username} setUsername={this.setUsername} isLoggedIn={this.state.isLoggedIn} swapLoggedIn={this.swapLoggedIn} history={this.props.history} />
+      );
+    }
+    const SignUpDetailsPage = () => {
+      return (
+        <SignUpDetails isLoggedIn={this.state.isLoggedIn} />
+      );
+    }
+    const SearchAreaMainPage = () => {
+      return (
+        <SearchAreaMain 
+          username={this.state.username} 
+          isLoggedIn={this.state.isLoggedIn}
+           />
+      );
     }
 
-    // const ChatPage = () => {
-    //   return (
-    //     <MainChatPage user={this.state.user!==""?this.state.user:""} />
-    //   );
-    // }
+    const ChatPage = () => {
+      return (
+        <MainChatPage 
+          username={this.state.username} 
+          uuid={this.state.uuid}
+          isLoggedIn={this.state.isLoggedIn} />
+      );
+    }
 
-    // const ChatRoomPage = ({ match }) => {
-    //   return (
-    //     <ChatRoom uid={this.state.user.uid} friendUid={match.params.uid} />
-    //   );
-    // }
+    const ChatRoomPage = ({ match }) => {
+      return (
+        <ChatRoom 
+          username={this.state.username} 
+          uuid={this.state.uuid} 
+          friendUsername={match.params.username}
+          isLoggedIn={this.state.isLoggedIn} />
+      );
+    }
 
+    console.log(this.state);
     return (
       <div className="container-fluid d-flex flex-column flex-start brown h-100">
         <div className="row orange">
@@ -74,19 +109,16 @@ class Main extends Component {
             <Switch>
               <Route exact path="/login" component={LoginPage} />
               <Route exact path="/signup" component={SignUp} />
-              <Route exact path="/signupdetails" component={SignUpDetails} />
               <Route exact path="/tantansignup" component={TantanSignUpDetails} />
               <Route exact path="/tindersignup" component={TinderSignUpDetails} />
 
-              <Route path="/find" component={() => <SearchArea minDist={this.state.minDist} handleInputChange={this.handleInputChange}/>} />
-              {/* <Route exact path="/chat" component={ChatPage} />
-              <Route path="/chat/:uid" component={ChatRoomPage} /> */}
+              <Route path="/find" component={SearchAreaMainPage} />
+              <Route exact path="/chat" component={ChatPage} />
+              <Route path="/chat/:username" component={ChatRoomPage} /> 
               <Route path="/profile" component={ProfilePage} />
 
-              {/* below are subpages */}
-              <Route path="/result" component={() => <ResultPage minDist={this.state.minDist}/>} />
               {/* 404 should put here */}
-              <Redirect to="/login" />
+              <Redirect to="/find" />
             </Switch>
           </div>
         </div>
