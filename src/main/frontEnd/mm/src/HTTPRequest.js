@@ -1,5 +1,5 @@
 const url = "http://192.168.99.100";
-const port = ":8081/"
+const port = ":8081/";
 const sendHttpRequest = (method, url, data) => {
   const promise = new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
@@ -31,10 +31,8 @@ const getProfile = (username) => {
 };
 
 const getSearchResult = (username,dist, gender) => {
-  //for dev
-  username="Meow";
-  console.log(url + port + `search/${username}?dist=${dist}&gender=${gender}`);
-  return sendHttpRequest('GET', url + port + `search/${username}?dist=${dist}&gender=${gender}`);
+  // console.log(url + port + `search/${username}?dist=${100000}&gender=${gender}`);
+  return sendHttpRequest('GET', url + port + `search/${username}?dist=${dist*10}&gender=${gender}`);
 };
 
 const postRegister = (data) => {

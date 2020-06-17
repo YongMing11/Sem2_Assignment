@@ -15,14 +15,14 @@ class Interests extends Component {
   }
 
   render() {
-
+    const {sport,music,food,movie,book } = this.props;
     return (
       <>
         <FormGroup row>
-          <Label htmlFor="interest" md={3}>Interests</Label>
-          <Col md={{ size: 5 }}>
+          <Label htmlFor="interest" className="col-12">Interests</Label>
+          <Col className="col-md-5">
             <Input type="select" name="sport"
-              value={this.state.sport}
+              value={sport}
               onChange={this.handleInputChange}>
               <option>--No Fav Sport--</option>
               <option>Basketball</option>
@@ -37,9 +37,9 @@ class Interests extends Component {
         </FormGroup>
 
         <FormGroup row>
-          <Col md={{ size: 5, offset: 3 }}>
+          <Col className="col-md-5">
             <Input type="select" name="music"
-              value={this.state.music}
+              value={music}
               onChange={this.handleInputChange}>
               <option>--No Fav Music--</option>
               <option>Alternative</option>
@@ -54,9 +54,9 @@ class Interests extends Component {
         </FormGroup>
 
         <FormGroup row>
-          <Col md={{ size: 5, offset: 3 }}>
+          <Col className="col-md-5">
             <Input type="select" name="food"
-              value={this.props.food}
+              value={food}
               onChange={this.handleInputChange}>
               <option>--No Fav Food--</option>
               <option>Rendang</option>
@@ -71,9 +71,9 @@ class Interests extends Component {
         </FormGroup>
 
         <FormGroup row>
-          <Col md={{ size: 5, offset: 3 }}>
+          <Col className="col-md-5">
             <Input type="select" name="movie"
-              value={this.state.movie}
+              value={movie}
               onChange={this.handleInputChange}>
               <option>--No Fav Movie--</option>
               <option>Action</option>
@@ -88,9 +88,9 @@ class Interests extends Component {
         </FormGroup>
 
         <FormGroup row>
-          <Col md={{ size: 5, offset: 3 }}>
+          <Col className="col-md-5">
             <Input type="select" name="book"
-              value={this.state.book}
+              value={book}
               onChange={this.handleInputChange}>
               <option>--No Fav Book--</option>
               <option>Adventure</option>

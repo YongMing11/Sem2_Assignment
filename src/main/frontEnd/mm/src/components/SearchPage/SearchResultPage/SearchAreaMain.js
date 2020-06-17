@@ -3,7 +3,8 @@ import ResultArea from './ResultArea';
 import SearchArea from './SearchAreaComponent';
 import { getSearchResult } from '../../../HTTPRequest';
 import BottomNav from '../../BottomNavComponent';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
+import MainChatPage from '../../../components/Chat/MainChatPage';
 
 class SearchAreaMain extends Component {
 
@@ -43,8 +44,18 @@ class SearchAreaMain extends Component {
     console.log("getting results of the search...");
     getSearchResult(this.props.username, this.state.minDist, this.state.selectedOption)
       .then(response => {
+        console.log("The search result return: ");
+        console.log(response);
+        const newArr = response.map(user=>{
+          return {
+            distance:Number(user.distance)/10,
+            match:user.match,
+            username:user.username
+          }
+        });
+        console.log(newArr);
         this.setState({
-          results: response
+          results: newArr
         });
       });
   }
@@ -55,6 +66,15 @@ class SearchAreaMain extends Component {
         <Redirect to="/login" />
       );
     }
+    // const ChatPage = () => {
+    //   const { username, uuid, isLoggedIn } = this.props;
+    //   return (
+    //     <MainChatPage 
+    //       username={username} 
+    //       uuid={uuid}
+    //       isLoggedIn={isLoggedIn} />
+    //   );
+    // }
     return (
       <div className="container-fluid">
 
@@ -73,10 +93,10 @@ class SearchAreaMain extends Component {
 
         <div className="row fixed-bottom">
           <div className="col-12 m-0">
-            <BottomNav />
+            <BottomNav history={this.props.history}/>
           </div>
         </div>
-
+        {/* <Route path="user/chat" component={ChatPage} /> */}
       </div>
     );
   }

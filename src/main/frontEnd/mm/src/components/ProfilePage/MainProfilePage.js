@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Header from './HeaderComponent';
-import Details from './DetailsComponent';
-import BottomNav from '../BottomNavComponent';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { getProfile } from '../../HTTPRequest';
+import BottomNav from '../BottomNavComponent';
+import Details from './DetailsComponent';
+import Header from './HeaderComponent';
 
 class ProfilePage extends Component {
 
@@ -45,7 +45,7 @@ class ProfilePage extends Component {
           <div className="row fixed-bottom-height bg-dark"></div>
           <div className={"row fixed-bottom"}>
             <div className="col-12 m-0">
-              <BottomNav />
+              <BottomNav history={this.props.history}/>
             </div>
           </div>
         </div>

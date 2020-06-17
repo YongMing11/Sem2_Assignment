@@ -5,14 +5,10 @@ import MainChatPage from './Chat/MainChatPage';
 import ChatRoom from './Chat/MainChatRoom';
 import Profile from './ProfilePage/MainProfilePage';
 import SearchAreaMain from './SearchPage/SearchResultPage/SearchAreaMain';
-import ResultPage from './SearchPage/SearchResultPage/SearchAreaMain';
 import Login from './SignUp/LoginPageComponent';
 import SignUp from './SignUp/SignUpComponent';
-import SignUpDetails from './SignUp/SignUpStep2';
-// import { getProfile } from '../HTTPRequest';
 import TantanSignUpDetails from './SignUp/TantanSignUp';
 import TinderSignUpDetails from './SignUp/TinderSignUp';
-import SignUpStep2 from './SignUp/SignUpStep2';
 
 class Main extends Component {
 
@@ -48,15 +44,23 @@ class Main extends Component {
   setUsername = (newUsername, uuid) => {
     this.setState({
       username: newUsername,
-      uuid:uuid
+      uuid: uuid
     });
   }
 
   render() {
+
+    const {history,location} = this.props;
+    console.log(history);
+    console.log(location);
     const ProfilePage = () => {
       console.log("this.state.user before render profile" + this.state.user);
       return (
-        <Profile username={this.state.username} isLoggedIn={this.state.isLoggedIn} swapLoggedIn={this.swapLoggedIn} />
+        <Profile 
+          history={history} 
+          username={this.state.username} 
+          isLoggedIn={this.state.isLoggedIn} 
+          swapLoggedIn={this.swapLoggedIn} />
       );
     }
     const LoginPage = () => {
@@ -64,40 +68,43 @@ class Main extends Component {
         <Login username={this.state.username} setUsername={this.setUsername} isLoggedIn={this.state.isLoggedIn} swapLoggedIn={this.swapLoggedIn} history={this.props.history} />
       );
     }
-    const SignUpDetailsPage = () => {
+    const SearchAreaMainPage = ({ location }) => {
+      console.log(location);
       return (
-        <SignUpDetails isLoggedIn={this.state.isLoggedIn} />
-      );
-    }
-    const SearchAreaMainPage = () => {
-      return (
-        <SearchAreaMain 
-          username={this.state.username} 
+        <SearchAreaMain
+          history={history}
+          username={this.state.username}
+          uuid={this.state.uuid}
           isLoggedIn={this.state.isLoggedIn}
-           />
+        />
       );
     }
 
-    const ChatPage = () => {
+    const ChatPage = ({ }) => {
       return (
-        <MainChatPage 
-          username={this.state.username} 
+        <MainChatPage
+          history={history}
+          username={this.state.username}
           uuid={this.state.uuid}
           isLoggedIn={this.state.isLoggedIn} />
       );
     }
 
-    const ChatRoomPage = ({ match }) => {
+    const ChatRoomPage = ({ match,location }) => {
+      console.log(location);
       return (
-        <ChatRoom 
-          username={this.state.username} 
-          uuid={this.state.uuid} 
+        <ChatRoom
+          history={history}
+          username={this.state.username}
+          uuid={this.state.uuid}
           friendUsername={match.params.username}
           isLoggedIn={this.state.isLoggedIn} />
       );
     }
 
-    console.log(this.state);
+    console.log("The user is logged in:" + this.state.isLoggedIn);
+    console.log("The username:" + this.state.username);
+    console.log("The uuid:" + this.state.uuid);
     return (
       <div className="container-fluid d-flex flex-column flex-start brown h-100">
         <div className="row orange">
@@ -107,15 +114,15 @@ class Main extends Component {
         <div className="row bg-dark h-100">
           <div className="col-12 p-0">
             <Switch>
-              <Route exact path="/login" component={LoginPage} />
-              <Route exact path="/signup" component={SignUp} />
-              <Route exact path="/tantansignup" component={TantanSignUpDetails} />
-              <Route exact path="/tindersignup" component={TinderSignUpDetails} />
+              <Route exact path="/login" render={()=><LoginPage/>} />
+              <Route exact path="/signup" render={()=><SignUp/>} />
+              <Route exact path="/tantansignup" render={()=><TantanSignUpDetails/>} />
+              <Route exact path="/tindersignup" render={()=><TinderSignUpDetails/>} />
 
-              <Route path="/find" component={SearchAreaMainPage} />
-              <Route exact path="/chat" component={ChatPage} />
-              <Route path="/chat/:username" component={ChatRoomPage} /> 
-              <Route path="/profile" component={ProfilePage} />
+              <Route path="/find" render={()=><SearchAreaMainPage/>} />
+              <Route path="/chat/:username" render={({match})=><ChatRoomPage match={match}/>} />
+              <Route exact path="/chat" render={()=><ChatPage/>} />
+              <Route path="/profile" render={()=><ProfilePage/>} />
 
               {/* 404 should put here */}
               <Redirect to="/find" />

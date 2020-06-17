@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import Geocode from "react-geocode";
 import { Link } from 'react-router-dom';
 // import history from './History';
-import { Form, Input, FormFeedback, FormGroup } from 'reactstrap';
-import { postTantan, postRegister } from '../../HTTPRequest';
-import Interests from '../SignUp/Interests';
+import { Form, FormFeedback, FormGroup, Input } from 'reactstrap';
+import { postRegister, postTantan } from '../../HTTPRequest';
 import { Tantan } from '../../shared/user';
-import Geocode from "react-geocode";
+import Interests from '../SignUp/Interests';
 
 class TantanSignUp extends Component {
     constructor(props) {
@@ -71,12 +71,12 @@ class TantanSignUp extends Component {
 
     handleSubmit(event) {
         const age = 2020 - Number(this.state.user.userProfile.birthDate.substring(6));
-        
+
         const user = {
             "userProfile": {
                 ...this.state.user.userProfile,
                 "username": this.state.username,
-                "age": age,
+                "age": null,
                 "interests": {
                     "sport": this.state.sport,
                     "music": this.state.music,
@@ -91,14 +91,14 @@ class TantanSignUp extends Component {
                 "password": this.state.password
             },
             "coordinate": {
-                "lat": this.state.latitude,
-                "lon": this.state.longitude
+                "lat": String(this.state.latitude),
+                "lon": String(this.state.longitude)
             }
         }
         console.log("below is before post register");
         console.log(user);
         postRegister(user).then(responseData => {
-            console.log("Registration successfully: "+responseData);
+            console.log("Registration using tantan successfully: " + responseData);
             if (responseData !== true) {
                 event.preventDefault();
             }
@@ -150,9 +150,9 @@ class TantanSignUp extends Component {
             return (
                 <div className="container">
                     <div className="row light-orange">
-                        <div className="col-12 p-3 py-4">
+                        <div className="col-12 p-3  bg-info">
                             <Form>
-
+                                <h2 className="pb-2">Tantan Sign Up</h2>
                                 <FormGroup>
                                     <Input type="text" id="username"
                                         placeholder="Username"
@@ -161,7 +161,8 @@ class TantanSignUp extends Component {
                                         valid={errors.username === ''}
                                         invalid={errors.username !== ''}
                                         onBlur={this.handleBlur('username')}
-                                        onChange={this.handleInputChange} >
+                                        onChange={this.handleInputChange}
+                                        className="col-md-5" >
                                     </Input>
                                     <FormFeedback>{errors.username}</FormFeedback>
                                 </FormGroup>
@@ -174,7 +175,8 @@ class TantanSignUp extends Component {
                                         valid={errors.email === ''}
                                         invalid={errors.email !== ''}
                                         onBlur={this.handleBlur('email')}
-                                        onChange={(event)=>{this.handleInputChange(event);}} >
+                                        onChange={(event) => { this.handleInputChange(event); }}
+                                        className="col-md-5" >
                                     </Input>
                                     <FormFeedback>{errors.email}</FormFeedback>
                                 </FormGroup>
@@ -187,13 +189,15 @@ class TantanSignUp extends Component {
                                         valid={errors.password === ''}
                                         invalid={errors.password !== ''}
                                         onBlur={this.handleBlur('password')}
-                                        onChange={this.handleInputChange} ></Input>
+                                        onChange={this.handleInputChange}
+                                        className="col-md-5" >
+                                    </Input>
                                     <FormFeedback>{errors.password}</FormFeedback>
                                 </FormGroup>
 
-                                <Interests handleInputChange={(event)=>{
+                                <Interests handleInputChange={(event) => {
                                     this.handleInputChange(event);
-                                    }}/>
+                                }} />
 
                                 <div className="col-12 d-flex flex-row justify-content-center">
                                     <Link to="/find">
@@ -213,7 +217,7 @@ class TantanSignUp extends Component {
                             </Link>
                         </div>
                     </div>
-                    <div className="row fixed-bottom-height light-orange"></div>
+                    {/* <div className="row fixed-bottom-height light-orange"></div> */}
                 </div>
             );
         } else {

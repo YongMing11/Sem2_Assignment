@@ -4,7 +4,47 @@ import { Form, Input, FormFeedback, FormGroup } from 'reactstrap';
 
 
 class SignUpStep1 extends Component {
+    constructor(props){
+        super(props);
+        this.state={
+            touched: {
+                username: false,
+                email: false,
+                password: false
+            }
+        };
+        this.validatePage1=this.validatePage1.bind(this);
+        this.handleBlur = this.handleBlur.bind(this);
+    }
+    handleBlur = (field) => (evt) => {
+        this.setState({
+            touched: { ...this.state.touched, [field]: true }
+        });
+    }
+    validatePage1(username, email, password) {
+        const errors = {
+            username: '',
+            email: '',
+            password: '',
+        }
+        if (this.state.touched.username && username.length < 5) {
+            errors.username = "Username must have at least 5 characters"
+        }
+        const emailRegex = /^\w+@\w+[.]\w+$/;
+        if (this.state.touched.email && !emailRegex.test(email))
+            errors.email = "Please input valid email format";
+        else {
+            errors.email = '';
+        }
 
+        if (this.state.touched.password && (password.length < 6 || password.length > 10))
+            errors.password = "Password length should be in the range of 6-10"
+        else {
+            errors.password = '';
+        }
+
+        return errors;
+    }
     render() {
       if(this.props.currentStep!==1){
         return(
@@ -12,8 +52,9 @@ class SignUpStep1 extends Component {
         );
       }
       const { username, email, password } = this.props;
-      const { validatePage1, handleBlur, handleInputChange, _next } = this.props;
-        const errors = validatePage1(username, email, password);
+      const { handleInputChange, _next } = this.props;
+      console.log("Username:" + username);
+        const errors = this.validatePage1(username, email, password);
         return (
             <div className="container">
                 <div className="row light-orange h-100">
@@ -26,7 +67,7 @@ class SignUpStep1 extends Component {
                                     value={username}
                                     // valid={errors.username === ''}
                                     invalid={errors.username !== ''}
-                                    onBlur={handleBlur('username')}
+                                    onBlur={this.handleBlur('username')}
                                     onChange={handleInputChange} ></Input>
                                 <FormFeedback>{errors.username}</FormFeedback>
                             </FormGroup>
@@ -38,26 +79,26 @@ class SignUpStep1 extends Component {
                                     value={email}
                                     // valid={errors.email === ''}
                                     invalid={errors.email !== ''}
-                                    onBlur={handleBlur('email')}
+                                    onBlur={this.handleBlur('email')}
                                     onChange={handleInputChange} ></Input>
                                 <FormFeedback>{errors.email}</FormFeedback>
                             </FormGroup>
 
                             <FormGroup>
-                                <Input type="text" id="loginPassword"
+                                <Input type="password" id="loginPassword"
                                     placeholder="New Password"
                                     name="password"
                                     value={password}
                                     // valid={errors.password === ''}
                                     invalid={errors.password !== ''}
-                                    onBlur={handleBlur('password')}
+                                    onBlur={this.handleBlur('password')}
                                     onChange={handleInputChange} ></Input>
                                 <FormFeedback>{errors.password}</FormFeedback>
                             </FormGroup>
                             <div className="col-12 d-flex flex-row justify-content-center">
                                 {/* <Link to="/signupdetails"> */}
                                     <button className="bg-warning" 
-                                    onClick={_next}>Fill in Details</button>
+                                    onClick={(event)=>{_next(username, email, password,event);}}>Fill in Details</button>
                                 {/* </Link> */}
                             </div>
                         </Form>

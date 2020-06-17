@@ -31,19 +31,24 @@ class Login extends Component {
   }
 
   handleSubmit(event) {
+    const { emailOrusername, password } = this.state;
     event.preventDefault();
-    login(this.state.emailOrusername,this.state.password).then(responseData => {
-      console.log("This is what being responsed: " + responseData);
-      if(responseData){
-        console.log("push");
-        this.props.swapLoggedIn();
-        //here may pass username or email, and uuid
-        this.props.setUsername(this.state.emailOrusername,responseData);
-        this.props.history.push('/find');
-      }else{
-        alert("Wrong email, username or password.");
-      }
-    });
+    if(emailOrusername === "" || password === ""){
+      alert("Please fill in the email and password Meow");
+    }else{
+      login(emailOrusername,password).then(responseData => {
+        console.log("This is what being responsed: " + responseData);
+        if(responseData){
+          console.log("push");
+          this.props.swapLoggedIn();
+          //here may pass username or email, and uuid
+          this.props.setUsername(this.state.emailOrusername,responseData);
+          this.props.history.push('/find');
+        }else{
+          alert("Wrong email, username or password.");
+        }
+      });
+    }
   }
 
   handleBlur = (field) => (evt) => {
@@ -91,7 +96,7 @@ class Login extends Component {
                 <FormFeedback>{errors.email}</FormFeedback>
               </FormGroup>
               <FormGroup>
-                <Input type="text" id="loginPassword" required placeholder="Password"
+                <Input type="password" id="loginPassword" required placeholder="Password"
                   name="password"
                   value={this.state.password}
                   // valid={errors.password === ''}
@@ -123,12 +128,12 @@ class Login extends Component {
             <p className="message" > ------ or connect with------ </p>
           </div>
 
-          <div className="col-12 d-flex flex-row justify-content-center w-100">
-            <Link to="/tantansignup" className="w-100">
+          <div className="col-12 d-flex flex-row justify-content-center">
+            <Link to="/tantansignup" className="w-100 d-flex flex-row justify-content-center">
               <button className="tantan" type="text" >
               </button>
             </Link>
-            <Link to="/tindersignup" className="w-100">
+            <Link to="/tindersignup" className="w-100 d-flex flex-row justify-content-center">
               <button className="tinder" type="text">
               </button>
             </Link>

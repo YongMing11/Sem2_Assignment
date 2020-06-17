@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import OneChatbox from './OneChatBox/OneChatboxComponent';
 import { Link, Redirect } from 'react-router-dom';
+import { getPreviousChats } from '../../HTTPRequest';
 import BottomNav from '../BottomNavComponent';
-import { getPreviousChats, getSocket } from '../../HTTPRequest';
+import OneChatbox from './OneChatBox/OneChatboxComponent';
 
 class MainChatPage extends Component {
 
@@ -48,7 +48,7 @@ class MainChatPage extends Component {
           {chats}
           <div className={"row fixed-bottom"}>
             <div className="col-12 m-0">
-              <BottomNav />
+              <BottomNav history={this.props.history}/>
             </div>
           </div>
         </div>

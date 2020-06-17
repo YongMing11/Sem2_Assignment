@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import LeftSide from './LeftComponent';
 import RightSide from './RightComponent';
-import { CHATS } from '../../../shared/chats';
 
 class OneChat extends Component {
 
@@ -22,12 +21,7 @@ class OneChat extends Component {
   }
 
   render() {
-    const { friendUsername,
-    unreadMsgNum,
-    lastMsgTime,
-    lastMsgText,
-    img,
-    name} = this.props;
+    const { friendUsername, unreadMsgNum, lastMsgTime, lastMsgText, img } = this.props;
     let shownText = lastMsgText;
     if (shownText.length > 16) {
       shownText = shownText.substring(0, 16) + "...";

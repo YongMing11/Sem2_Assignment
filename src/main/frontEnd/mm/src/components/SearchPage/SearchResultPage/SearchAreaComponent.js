@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, Label, Button, CustomInput, Input } from 'reactstrap';
-import { Link, Redirect } from 'react-router-dom';
-import BottomNav from '../../BottomNavComponent';
+import { Button, CustomInput, Form, FormGroup, Input, Label } from 'reactstrap';
 
 class SearchArea extends Component {
 

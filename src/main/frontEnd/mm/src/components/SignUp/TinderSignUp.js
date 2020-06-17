@@ -13,9 +13,9 @@ class TinderSignUp extends Component {
 
         this.state = {
             user: '',
-            username: 't',
-            email: 'fgt@fg',
-            password: 'tttt',
+            username: '',
+            email: '',
+            password: '',
             sport: '',
             music: '',
             food: '',
@@ -65,7 +65,7 @@ class TinderSignUp extends Component {
                     "userProfile": {
                         ...this.state.user.userProfile,
                         "username": this.state.username,
-                        "age": age,
+                        "age": String(age),
                         "address": this.state.query,
                         "interests": {
                             "sport": this.state.sport,
@@ -81,14 +81,14 @@ class TinderSignUp extends Component {
                         "password": this.state.password
                     },
                     "coordinate": {
-                        "lat": lat,
-                        "lon": lng
+                        "lat": String(lat),
+                        "lon": String(lng)
                     }
                 }
                 console.log("post below data to /register");
                 console.log(user);
                 postRegister(user).then(responseData => {
-                    console.log("Registration successfully: " + responseData);
+                    console.log("Registration using Tinder Account successfully: " + responseData);
                     if (responseData !== true) {
                         console.log("Email or username has been used by other user");
                     }
@@ -161,7 +161,7 @@ class TinderSignUp extends Component {
                     <div className="row light-orange">
                         <div className="col-12 p-3 py-4">
                             <Form>
-
+                            <h2 className="pb-2">Tinder Sign Up</h2>
                                 <FormGroup>
                                     <Input type="text" id="username"
                                         placeholder="Username"
@@ -201,7 +201,7 @@ class TinderSignUp extends Component {
                                 </FormGroup>
 
                                 <FormGroup row>
-                                    <Label htmlFor="livingAddress" md={3}>Living Address</Label>
+                                    <Label htmlFor="livingAddress" className="col-12">Living Address</Label>
                                     <Col md={8}>
                                         <Input type="textarea" id="query" name="query"
                                             rows="6"
@@ -238,7 +238,6 @@ class TinderSignUp extends Component {
                             </Link>
                         </div>
                     </div>
-                    <div className="row fixed-bottom-height light-orange"></div>
                 </div>
             );
         } else {

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Card, CardText, CardBody } from 'reactstrap';
-import { CHATS } from '../../shared/chats';
+import { Card, CardBody, CardText } from 'reactstrap';
 
 class ChatRoomBody extends Component {
 
