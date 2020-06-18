@@ -100,8 +100,13 @@ class TinderSignUp extends Component {
         );
     }
 
-    handleSubmit(event) {
-        this.codeAddress(this.state.query);
+    handleSubmit(username,email,password,query,event) {
+        if (username.length === 0||password.length === 0||email.length === 0||query.length===0) {
+            alert("username, email, password or address should not be empty");
+            event.preventDefault();
+        }else{
+            this.codeAddress(this.state.query);
+        }
     }
 
     handleBlur = (field) => (evt) => {
@@ -132,24 +137,11 @@ class TinderSignUp extends Component {
         else {
             errors.password = '';
         }
-        if (username.length === 0) {
-            errors.username = "Password length should be in the range of 6-10"
-        }
-        if (password.length === 0) {
-            errors.password = "Password length should be in the range of 6-10"
-        }
-        if (email.length === 0) {
-            errors.email = "Please input valid email format";
-        }
         if (this.state.touched.query && (query.split(/[\s,]+/).filter(x => (x === 'Jalan' || x === 'Lorong')).length !== 1 ||
             query.split(/[\s,]+/).filter(x => (x === 'Taman')).length !== 1 ||
             query.split(/[\s,]+/).filter(x => x.match(/\b\d{5}\b/g)).length !== 1))
-            errors.query = "Living Address should contain Jalan, Taman and Poscode(5 digit)";
+            errors.query = "Living Address should contain Jalan, Taman and Postcode(5 digit), if any of them is not within the address, you can still sign up but the coordinate may not be accurate.";
         else errors.query = '';
-
-        if (query.length === 0) {
-            errors.query = "Living Address should contain Jalan, Taman and Poscode(5 digit)"
-        }
         return errors;
     }
 
@@ -167,7 +159,7 @@ class TinderSignUp extends Component {
                                         placeholder="Username"
                                         name="username"
                                         value={this.state.username}
-                                        valid={errors.username === ''}
+                                        // valid={errors.username === ''}
                                         invalid={errors.username !== ''}
                                         onBlur={this.handleBlur('username')}
                                         onChange={this.handleInputChange} >
@@ -180,7 +172,7 @@ class TinderSignUp extends Component {
                                         placeholder="Email Address"
                                         name="email"
                                         value={this.state.email}
-                                        valid={errors.email === ''}
+                                        // valid={errors.email === ''}
                                         invalid={errors.email !== ''}
                                         onBlur={this.handleBlur('email')}
                                         onChange={this.handleInputChange} >
@@ -189,11 +181,11 @@ class TinderSignUp extends Component {
                                 </FormGroup>
 
                                 <FormGroup>
-                                    <Input type="text" id="loginPassword"
+                                    <Input type="password" id="loginPassword"
                                         placeholder="New Password"
                                         name="password"
                                         value={this.state.password}
-                                        valid={errors.password === ''}
+                                        // valid={errors.password === ''}
                                         invalid={errors.password !== ''}
                                         onBlur={this.handleBlur('password')}
                                         onChange={this.handleInputChange} ></Input>
@@ -207,7 +199,7 @@ class TinderSignUp extends Component {
                                             rows="6"
                                             placeholder="must contains Jalan/Lorong, Taman, Postcode"
                                             value={this.state.query}
-                                            valid={errors.query === ''}
+                                            // valid={errors.query === ''}
                                             invalid={errors.query !== ''}
                                             onBlur={this.handleBlur('query')}
                                             onChange={this.handleInputChange}>
@@ -223,7 +215,9 @@ class TinderSignUp extends Component {
                                 <div className="col-12 d-flex flex-row justify-content-center">
                                     <Link to="/find">
                                         <button type="sign up" id="signUp" className="bg-warning"
-                                            onClick={this.handleSubmit}>Sign Up!</button>
+                                            onClick={(event)=>{
+                                            this.handleSubmit(this.state.username,this.state.email,this.state.password,this.state.query,event);
+                                            }}>Sign Up!</button>
                                     </Link>
                                 </div>
                             </Form>

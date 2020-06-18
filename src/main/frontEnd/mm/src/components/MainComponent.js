@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Header from './HeaderComponent';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import MainChatPage from './Chat/MainChatPage';
 import ChatRoom from './Chat/MainChatRoom';
+import Header from './HeaderComponent';
 import Profile from './ProfilePage/MainProfilePage';
 import SearchAreaMain from './SearchPage/SearchResultPage/SearchAreaMain';
 import Login from './SignUp/LoginPageComponent';
@@ -105,6 +105,7 @@ class Main extends Component {
     console.log("The user is logged in:" + this.state.isLoggedIn);
     console.log("The username:" + this.state.username);
     console.log("The uuid:" + this.state.uuid);
+    const { username, uuid } = this.props;
     return (
       <div className="container-fluid d-flex flex-column flex-start brown h-100">
         <div className="row orange">

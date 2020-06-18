@@ -68,7 +68,7 @@ class SignUpStep2 extends Component {
                 <></>
             );
         }
-        console.log("Now Step 2");
+        // console.log("Now Step 2");
         const errors = this.validatePage2(birthDate, telnum, query);
         return (
             <div className="container">

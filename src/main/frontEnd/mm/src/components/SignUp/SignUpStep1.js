@@ -30,7 +30,7 @@ class SignUpStep1 extends Component {
         if (this.state.touched.username && username.length < 5) {
             errors.username = "Username must have at least 5 characters"
         }
-        const emailRegex = /^\w+@\w+[.]\w+$/;
+        const emailRegex = /^\w+@\w+([.]\w+)+$/;
         if (this.state.touched.email && !emailRegex.test(email))
             errors.email = "Please input valid email format";
         else {

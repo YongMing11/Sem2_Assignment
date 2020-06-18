@@ -23,8 +23,8 @@ class OneChat extends Component {
   render() {
     const { friendUsername, unreadMsgNum, lastMsgTime, lastMsgText, img } = this.props;
     let shownText = lastMsgText;
-    if (shownText.length > 16) {
-      shownText = shownText.substring(0, 16) + "...";
+    if (shownText.length > 14) {
+      shownText = shownText.substring(0, 14) + "...";
     }
     let options = { hour: '2-digit', minute: '2-digit' };
     return (
@@ -33,7 +33,7 @@ class OneChat extends Component {
           <div className="container p-0">
             <div className="row light-orange">
               <div className="col-8">
-                <LeftSide name={friendUsername} lastMsgText={lastMsgText} img={img} />
+                <LeftSide name={friendUsername} lastMsgText={shownText} img={img} />
               </div>
 
               <div className="col-4 d-flex flex-column justify-content-center pr-4">

@@ -29,7 +29,6 @@ class OneCard extends Component {
   }
 
   render() {
-    console.log(this.state.user);
     return (
       <>
         <Card onClick={this.toggleModal}>

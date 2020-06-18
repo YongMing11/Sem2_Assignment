@@ -69,40 +69,45 @@ class TantanSignUp extends Component {
         );
     }
 
-    handleSubmit(event) {
-        const age = 2020 - Number(this.state.user.userProfile.birthDate.substring(6));
+    handleSubmit(username, email, password, event) {
+        if (username.length === 0 || password.length === 0 || email.length === 0) {
+            alert("username, email or password should not be empty");
+            event.preventDefault();
+        } else {
+            const age = 2020 - Number(this.state.user.userProfile.birthDate.substring(6));
 
-        const user = {
-            "userProfile": {
-                ...this.state.user.userProfile,
-                "username": this.state.username,
-                "age": null,
-                "interests": {
-                    "sport": this.state.sport,
-                    "music": this.state.music,
-                    "food": this.state.food,
-                    "movie": this.state.movie,
-                    "book": this.state.book
+            const user = {
+                "userProfile": {
+                    ...this.state.user.userProfile,
+                    "username": this.state.username,
+                    "age": null,
+                    "interests": {
+                        "sport": this.state.sport,
+                        "music": this.state.music,
+                        "food": this.state.food,
+                        "movie": this.state.movie,
+                        "book": this.state.book
+                    }
+                },
+                "loginCredentials": {
+                    "username": this.state.username,
+                    "email": this.state.email,
+                    "password": this.state.password
+                },
+                "coordinate": {
+                    "lat": String(this.state.latitude),
+                    "lon": String(this.state.longitude)
                 }
-            },
-            "loginCredentials": {
-                "username": this.state.username,
-                "email": this.state.email,
-                "password": this.state.password
-            },
-            "coordinate": {
-                "lat": String(this.state.latitude),
-                "lon": String(this.state.longitude)
             }
+            console.log("below is before post register");
+            console.log(user);
+            postRegister(user).then(responseData => {
+                console.log("Registration using tantan successfully: " + responseData);
+                if (responseData !== true) {
+                    event.preventDefault();
+                }
+            });
         }
-        console.log("below is before post register");
-        console.log(user);
-        postRegister(user).then(responseData => {
-            console.log("Registration using tantan successfully: " + responseData);
-            if (responseData !== true) {
-                event.preventDefault();
-            }
-        });
     }
 
     handleBlur = (field) => (evt) => {
@@ -132,15 +137,7 @@ class TantanSignUp extends Component {
         else {
             errors.password = '';
         }
-        if (username.length === 0) {
-            errors.username = "Password length should be in the range of 6-10"
-        }
-        if (password.length === 0) {
-            errors.password = "Password length should be in the range of 6-10"
-        }
-        if (email.length === 0) {
-            errors.email = "Please input valid email format";
-        }
+
         return errors;
     }
 
@@ -150,7 +147,7 @@ class TantanSignUp extends Component {
             return (
                 <div className="container">
                     <div className="row light-orange">
-                        <div className="col-12 p-3  bg-info">
+                        <div className="col-12 p-3">
                             <Form>
                                 <h2 className="pb-2">Tantan Sign Up</h2>
                                 <FormGroup>
@@ -158,7 +155,7 @@ class TantanSignUp extends Component {
                                         placeholder="Username"
                                         name="username"
                                         value={this.state.username}
-                                        valid={errors.username === ''}
+                                        // valid={errors.username === ''}
                                         invalid={errors.username !== ''}
                                         onBlur={this.handleBlur('username')}
                                         onChange={this.handleInputChange}
@@ -172,7 +169,7 @@ class TantanSignUp extends Component {
                                         placeholder="Email Address"
                                         name="email"
                                         value={this.state.email}
-                                        valid={errors.email === ''}
+                                        // valid={errors.email === ''}
                                         invalid={errors.email !== ''}
                                         onBlur={this.handleBlur('email')}
                                         onChange={(event) => { this.handleInputChange(event); }}
@@ -186,7 +183,7 @@ class TantanSignUp extends Component {
                                         placeholder="New Password"
                                         name="password"
                                         value={this.state.password}
-                                        valid={errors.password === ''}
+                                        // valid={errors.password === ''}
                                         invalid={errors.password !== ''}
                                         onBlur={this.handleBlur('password')}
                                         onChange={this.handleInputChange}
@@ -202,7 +199,9 @@ class TantanSignUp extends Component {
                                 <div className="col-12 d-flex flex-row justify-content-center">
                                     <Link to="/find">
                                         <button type="sign up" id="signUp" className="bg-warning"
-                                            onClick={this.handleSubmit}>Sign Up!</button>
+                                            onClick={(event)=>{
+                                            this.handleSubmit(this.state.username,this.state.email,this.state.password,event);
+                                            }}>Sign Up!</button>
                                     </Link>
                                 </div>
                             </Form>

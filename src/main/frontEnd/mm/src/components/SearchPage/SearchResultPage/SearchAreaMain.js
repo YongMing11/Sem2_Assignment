@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import ResultArea from './ResultArea';
-import SearchArea from './SearchAreaComponent';
+import { Redirect } from 'react-router-dom';
 import { getSearchResult } from '../../../HTTPRequest';
 import BottomNav from '../../BottomNavComponent';
-import { Redirect, Route } from 'react-router-dom';
-import MainChatPage from '../../../components/Chat/MainChatPage';
+import ResultArea from './ResultArea';
+import SearchArea from './SearchAreaComponent';
 
 class SearchAreaMain extends Component {
 
@@ -27,7 +26,7 @@ class SearchAreaMain extends Component {
     const value = target.type === 'checkbox' ?
       target.checked : target.value;
     const name = target.name;
-    console.log("Previous value: " + value);
+    // console.log("Previous value: " + value);
     this.setState({
       [name]: value
     });
@@ -41,7 +40,7 @@ class SearchAreaMain extends Component {
 
   onSubmitSearch(event) {
     event.preventDefault();
-    console.log("getting results of the search...");
+    // console.log("getting results of the search...");
     getSearchResult(this.props.username, this.state.minDist, this.state.selectedOption)
       .then(response => {
         console.log("The search result return: ");

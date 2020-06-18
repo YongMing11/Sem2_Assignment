@@ -2,7 +2,7 @@ export const Tantan =
 {
   "username": "Meow",
   "birthDate": "2000-08-01T00:00:00.000Z",
-  "gender": "M",
+  "gender": "Female",
   "contact": "601999999999",
   "address": "No 20, Jalan 5, Taman Assam Jawa, 45700, Bukit Rotan, Selangor"
 }

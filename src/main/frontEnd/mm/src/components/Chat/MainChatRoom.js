@@ -31,6 +31,7 @@ class MainChatRoom extends Component {
       setTimeout(()=>{
         getPreviousChats(this.props.username, this.props.uuid)
         .then(responseData => {
+          console.log("These are the previous chat: ");
           console.log(responseData);
           //get the msg with that friend
           if (responseData) {
@@ -52,36 +53,30 @@ class MainChatRoom extends Component {
           }
         });
       },1000);
-      // getPreviousChats(this.props.username, this.props.uuid)
-      //   .then(responseData => {
-      //     console.log(responseData);
-      //     //get the msg with that friend
-      //     if (responseData) {
-      //       const friend = responseData.filter(friend => {
-      //         return (friend.name === friendUsername);
-      //       })[0];
-      //       console.log(friend);
-      //       if (friend) {
-      //         if (friend.length !== 0) {
-      //           this.setState({
-      //             msg: friend.msg
-      //           });
-      //         }
-      //       } else {
-      //         this.setState({
-      //           isChatBefore: false
-      //         });
-      //       }
-      //     }
-      //   });
-
     };
 
-    this.socket.onmessage = function (event) {
+    this.socket.onmessage = (event)=> {
       if (event.data instanceof ArrayBuffer) {
         console.log('Got Image:');
       } else {
-        console.log(`Got Message: ${event.data}`);
+        console.log(`Server notification: Got Message ${event.data}`);
+        const posOfColon = event.data.indexOf(":");
+        const text = event.data.substring(posOfColon+1);
+        const msg = {
+          byMe: false,
+          msgText: text,
+          timestamp: new Date().toISOString()
+        };
+        this.setState((state) => {
+          //make it a msg object
+          if (state.msg) {
+            let temp = state.msg;
+            temp.unshift(msg);
+            return { msg: temp }
+          } else {
+            return { msg: msg }
+          }
+        });
       }
     };
   }
@@ -108,7 +103,7 @@ class MainChatRoom extends Component {
         } else {
           return { msg: msg }
         }
-      })
+      });
     } else if (header.substring(0, 4) === "READ") {
       console.log("Click on one chatbox to read the msg");
     } else if (header.substring(0, 5) === "START") {

@@ -43,6 +43,7 @@ class Login extends Component {
           this.props.swapLoggedIn();
           //here may pass username or email, and uuid
           this.props.setUsername(this.state.emailOrusername,responseData);
+          console.log("UUID: " + this.props.uuid);
           this.props.history.push('/find');
         }else{
           alert("Wrong email, username or password.");
@@ -107,7 +108,7 @@ class Login extends Component {
               </FormGroup>
 
               <div className="col-12 p-3 d-flex flex-row justify-content-center">
-                <button type="text" className="bg-warning" onClick={this.handleSubmit}>Log In</button>
+                <button type="text" onClick={this.handleSubmit}>Log In</button>
               </div>
 
             </Form>
