@@ -113,7 +113,7 @@ class Main extends Component {
         </div>
 
         <div className="row bg-dark h-100">
-          <div className="col-12 p-0 lightgrey">
+          <div className="col-12 p-0 whitesmoke flexbox">
             <Switch>
               <Route exact path="/login" render={()=><LoginPage/>} />
               <Route exact path="/signup" render={()=><SignUp/>} />

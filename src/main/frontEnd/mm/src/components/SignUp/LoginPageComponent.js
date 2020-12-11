@@ -80,7 +80,8 @@ class Login extends Component {
     }
     const errors = this.validate(this.state.emailOrusername, this.state.password);
     return (
-      <div className="container whitesmoke">
+      <div className="container">
+        <img className="loveicon" src="https://www.flaticon.com/svg/static/icons/svg/3237/3237433.svg"/>
             <Form className="Login">
               <FormGroup>
                 <Input type="text" id="email" required
@@ -111,26 +112,24 @@ class Login extends Component {
 
             </Form>
 
-          <div className="col-12 text-center">
+          <div className="text-center">
             <p className="message">Haven't Registered?</p>
-          </div>
-
-          <div className="col-12 pt-0 d-flex flex-row justify-content-center">
             <Link to='/signup'>
-              <button to="/signup" className="registerButton" type="text">Sign Up</button>
+              <p className="redMessage">CREATE ACCOUNT</p>
             </Link>
           </div>
+
           <hr></hr>
-          <div className="col-12 text-center ">
+          <div className="text-center ">
             <p className="message" >or connect with</p>
           </div>
 
-          <div className="col-12 d-flex flex-row justify-content-center">
-            <Link to="/tantansignup" className="w-100 d-flex flex-row justify-content-center">
+          <div className="alternativeLogin">
+            <Link to="/tantansignup" className="alternativeLoginButton">
               <button className="tantan" type="text" >
               </button>
             </Link>
-            <Link to="/tindersignup" className="w-100 d-flex flex-row justify-content-center">
+            <Link to="/tindersignup" className="alternativeLoginButton">
               <button className="tinder" type="text">
               </button>
             </Link>

@@ -50,8 +50,18 @@ header {
 .container{
   max-width: 400px;
   display:flex;
+  align-items: center;
   flex-direction: column;
   padding:20px;
+}
+
+.alternativeLogin{
+  width:100%;
+  display: flex;
+}
+
+.alternativeLoginButton{
+  flex:0.5;
 }
 
 .third {
@@ -166,9 +176,16 @@ a, a::after, a:active, a:hover, a:visited {
 input{
   border: 0px;
   border-radius: 0;
+  outline-width: 0px;
   width:100%;
   height:45px;
   font-family: 'Poppins', sans-serif;
+}
+
+.flexbox{
+  display:flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .upperPart{
@@ -205,8 +222,17 @@ hr{
   height: 1px;
 }
 
+.loveicon{
+  width:20%;
+  margin:10px;
+}
+.redMessage{
+  color:#DC143C;
+  font-weight: bold;
+}
 .message {
   font-family: 'Poppins', sans-serif;
+  margin:5px;
 }
 
 button.tantan {
@@ -258,6 +284,11 @@ button.tinder:hover {
 
 label {
   display: flex;
+}
+
+form{
+  width:100%;
+  padding:10px;
 }
 
 #registerForm {
