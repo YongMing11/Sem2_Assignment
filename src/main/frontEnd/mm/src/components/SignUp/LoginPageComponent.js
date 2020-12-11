@@ -115,7 +115,7 @@ class Login extends Component {
           <div className="text-center">
             <p className="message">Haven't Registered?</p>
             <Link to='/signup'>
-              <p className="redMessage">CREATE ACCOUNT</p>
+              <p className="pinkMessage">CREATE ACCOUNT</p>
             </Link>
           </div>
 
