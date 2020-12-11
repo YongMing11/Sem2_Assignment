@@ -56,8 +56,7 @@ class SignUpStep1 extends Component {
       console.log("Username:" + username);
         const errors = this.validatePage1(username, email, password);
         return (
-            <div className="container">
-                <div className="row light-orange h-100">
+                <div className="container  whitesmoke">
                     <div className="col-12 p-3 py-4">
                         <Form>
                             <FormGroup>
@@ -115,7 +114,6 @@ class SignUpStep1 extends Component {
                     </div>
 
                 </div>
-            </div>
         );
     }
 }

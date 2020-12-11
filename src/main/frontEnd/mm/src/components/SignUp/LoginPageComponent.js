@@ -80,10 +80,7 @@ class Login extends Component {
     }
     const errors = this.validate(this.state.emailOrusername, this.state.password);
     return (
-      <div className="container h-100">
-        <div className="row light-orange h-100">
-
-          <div className="col-12 p-3 py-5">
+      <div className="container whitesmoke">
             <Form className="Login">
               <FormGroup>
                 <Input type="text" id="email" required
@@ -97,7 +94,8 @@ class Login extends Component {
                 <FormFeedback>{errors.email}</FormFeedback>
               </FormGroup>
               <FormGroup>
-                <Input type="password" id="loginPassword" required placeholder="Password"
+                <Input type="password" id="loginPassword" required 
+                placeholder="Password"
                   name="password"
                   value={this.state.password}
                   // valid={errors.password === ''}
@@ -112,7 +110,6 @@ class Login extends Component {
               </div>
 
             </Form>
-          </div>
 
           <div className="col-12 text-center">
             <p className="message">Haven't Registered?</p>
@@ -120,13 +117,12 @@ class Login extends Component {
 
           <div className="col-12 pt-0 d-flex flex-row justify-content-center">
             <Link to='/signup'>
-              <Button to="/signup" className="registerButton" type="text">Sign Up</Button>
+              <button to="/signup" className="registerButton" type="text">Sign Up</button>
             </Link>
           </div>
-
-          <div className="col-12">&nbsp;</div>
+          <hr></hr>
           <div className="col-12 text-center ">
-            <p className="message" > ------ or connect with------ </p>
+            <p className="message" >or connect with</p>
           </div>
 
           <div className="col-12 d-flex flex-row justify-content-center">
@@ -139,7 +135,6 @@ class Login extends Component {
               </button>
             </Link>
           </div>
-        </div>
       </div>
 
     );

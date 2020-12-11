@@ -72,7 +72,7 @@ class SignUpStep2 extends Component {
         const errors = this.validatePage2(birthDate, telnum, query);
         return (
             <div className="container">
-                <div className='col-12 col-md-6 light-orange' id="registerForm">
+                <div className='col-12 col-md-6 whitesmoke' id="registerForm">
                     <div className='col-12 text-center'>
                         <h4>Complete your profile</h4>
                     </div>

@@ -7,7 +7,7 @@ import Profile from './ProfilePage/MainProfilePage';
 import SearchAreaMain from './SearchPage/SearchResultPage/SearchAreaMain';
 import Login from './SignUp/LoginPageComponent';
 import SignUp from './SignUp/SignUpComponent';
-import TantanSignUpDetails from './SignUp/TantanSignUp';
+import TantanSignUp from './SignUp/TantanSignUp';
 import TinderSignUpDetails from './SignUp/TinderSignUp';
 
 class Main extends Component {
@@ -108,16 +108,16 @@ class Main extends Component {
     const { username, uuid } = this.props;
     return (
       <div className="container-fluid d-flex flex-column flex-start brown h-100">
-        <div className="row orange">
+        <div className="row white">
           <Header />
         </div>
 
         <div className="row bg-dark h-100">
-          <div className="col-12 p-0">
+          <div className="col-12 p-0 lightgrey">
             <Switch>
               <Route exact path="/login" render={()=><LoginPage/>} />
               <Route exact path="/signup" render={()=><SignUp/>} />
-              <Route exact path="/tantansignup" render={()=><TantanSignUpDetails/>} />
+              <Route exact path="/tantansignup" render={()=><TantanSignUp/>} />
               <Route exact path="/tindersignup" render={()=><TinderSignUpDetails/>} />
 
               <Route path="/find" render={()=><SearchAreaMainPage/>} />

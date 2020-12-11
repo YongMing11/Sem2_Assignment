@@ -1,4 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Lobster);
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 .noselect {
   -webkit-touch-callout: none;
   /* iOS Safari */
@@ -17,6 +19,11 @@
 
 .brown {
   background-color: rgb(58, 46, 17);
+}
+
+.pink{
+  background-color: #861657;
+background-image: linear-gradient(326deg, #861657 0%, #ffa69e 74%);
 }
 
 html, body, #root {
@@ -40,21 +47,32 @@ header {
   color: black;
 }
 
+.container{
+  max-width: 400px;
+  display:flex;
+  flex-direction: column;
+  padding:20px;
+}
+
 .third {
   background-color: #6E4C1E;
   /* background-color: #A13941; */
 }
 
-.orange {
+.white {
   /* background-color:#EEB238; */
   /* background-color:#F3DB74; */
-  background-color: #881600;
+  background-color: white;
 }
 
-.light-orange {
+.lightgrey{
+  background-color: lightgrey;
+}
+
+.whitesmoke {
   /* background-color: rgb(255, 228, 137); */
   /* background-color: #F0E1B9; */
-  background-color: rgb(245, 225, 199);
+  background-color: whitesmoke;
 }
 .basic-info{
   background-color: rgb(238, 229, 216);
@@ -145,23 +163,33 @@ a, a::after, a:active, a:hover, a:visited {
   display: none;
 }
 
+input{
+  border: 0px;
+  border-radius: 0;
+  width:100%;
+  height:45px;
+  font-family: 'Poppins', sans-serif;
+}
 
-
+.upperPart{
+  width:100%;
+  padding:25px;
+  padding-bottom:0px;
+  margin:0px;
+}
 /* below code is from ym */
 
 button {
-  font-family: Lobster;
-  border-style: solid;
-  border-width: 0.02px;
-  border-radius: 20px;
+  font-family: 'Poppins', sans-serif;  
+  border-width: 0px;
   border-color: BLACK;
-  background: rgb(255, 137, 70);
-  color: black;
+  background: #c94893;
+  color: white;
   padding: 10px;
   font-size: 20px;
   cursor: pointer;
   transition-duration: 0.4s;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 150px;
 }
 
 button:hover {
@@ -169,22 +197,16 @@ button:hover {
   color: white;
 }
 
-.registerButton {
-  font-family: Lobster;
-  border-style: solid;
-  border-color: BLACK;
-  border-width: 0.02px;
-  background: rgb(255, 137, 70);
-  /* width: 35%; */
-  margin-bottom: 3%;
-  padding: 10px;
-  font-size: 20px;
-  cursor: pointer;
-  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+hr{
+  margin-top:35px;
+  border: 0;
+  width: 96%;               
+  background-color:lightgray;
+  height: 1px;
 }
 
 .message {
-  font-family: "Squada One";
+  font-family: 'Poppins', sans-serif;
 }
 
 button.tantan {
@@ -193,8 +215,9 @@ button.tantan {
   background-repeat: no-repeat;
   background-position: center;
   background-color: white;
-  border-radius: unset;
-  border: 2px solid rgb(255, 146, 82);
+  border-bottom: 4px solid;
+  border-image-source: linear-gradient(45deg, #f7b42c 0%, #fc575e 74%);
+  border-image-slice: 1;
   margin: 2% 3% 5% 4%;
   width: 95%;
   /* width: 30%; */
@@ -215,8 +238,9 @@ button.tinder {
   background: url(https://i.pcmag.com/imagery/reviews/02ibIXDUJNJ3V7KL8jhUNFf-7.fit_scale.size_1028x578.v_1569480464.png);
   background-size: 100%;
   background-position: center;
-  border: 2px solid rgb(255, 56, 122);
-  border-radius: unset;
+  border-bottom: 4px solid;
+  border-image-source: linear-gradient(45deg, #fc5296 0%, #f67062 74%);
+  border-image-slice: 1;
   margin: 2% 4% 5% 3%;
   width: 95%;
   max-width: 250px;
