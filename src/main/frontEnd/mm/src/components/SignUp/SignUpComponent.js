@@ -24,7 +24,7 @@ class SignUp extends Component {
             birthDate: '',
             telnum: '',
             query: '',
-            apikey: '99f8f42735854ae7bff77ad5fe37d8ef',
+            apikey: 'Your API Key',
             latitude: '',
             longitude: '',
         };
@@ -48,7 +48,7 @@ class SignUp extends Component {
     }
 
     codeAddress = (address, event) => {
-        Geocode.setApiKey("AIzaSyAksVZB4RHHEdtF96HB4qpKHRVGWKdFlIo");
+        Geocode.setApiKey("Insert Your GCP Geocode API key here");
         Geocode.setLanguage("en");
         Geocode.fromAddress(address).then(
             response => {
